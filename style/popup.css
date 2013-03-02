@@ -1,0 +1,91 @@
+// Stylesheet for the popup of a SpeedRunsLive Chrome Extension.
+// Much of this has been borrowed and modified from SpeedRunsLive.com
+
+// Color
+
+@gold: #f7e279; .gold { color: @gold; text-shadow: 1px 1px 0px rgba(0,0,0,0.6), 0 0 1px @gold*(4/7); }
+@silver: #bec7d2; .silver { color: @silver; text-shadow: 1px 1px 0px rgba(0,0,0,0.6), 0 0 1px @silver*(4/7); }
+@bronze: #e09456; .bronze { color: @bronze; text-shadow: 1px 1px 0px rgba(0,0,0,0.6), 0 0 1px @bronze*(4/7); }
+@red: #fa5050; .red { color: @red; }
+@green: #52d64f; .green { color: @green; }
+@grey: #424242;
+@black: #000;
+@white: #fff;
+@twitter: #6adbfc;
+@lightgrey: #808080; .grey { color: @lightgrey; }
+@popred: #c01614;
+@darkgrey: #111;
+@darkred: #7c0605;
+@darkblue: #1448b3;
+@blue: #3c70df;
+
+
+// Fonts
+
+.sans {
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  font-size:0.88em;
+}
+
+.serif {
+  font-family: 'Merriweather', Georgia, serif;
+  font-weight:800;
+  font-size:1.21em;
+}
+@smaller: 85%;
+@evensmaller: 75%;
+.small {font-size:@evensmaller;}
+
+
+// Main Page setup
+
+html, body {
+  background: @darkgrey;
+  color: @silver;
+  .sans;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  text-shadow: 1px 1px 0px rgba(0,0,0,0.3); // a bit experimental here but i think it works good!
+  line-height:15px;
+}
+
+::selection { background: rgba(0, 0, 0, .6); color:@gold; }
+.rounded (@size: 5px) { border-radius: @size; -moz-border-radius: @size; -webkit-border-radius: @size; }
+.rounded_top { border-radius: 5px 5px 0 0; -moz-border-radius: 5px 5px 0 0; -webkit-border-radius: 5px 5px 0 0; }
+.rounded_bottom { border-radius: 0 0 5px 5px; -moz-border-radius: 0 0 5px 5px; -webkit-border-radius: 0 0 5px 5px; }
+.rounded_topleft { border-radius: 5px 0 0 0; -moz-border-radius: 5px 0 0 0; -webkit-border-radius: 5px 0 0 0; }
+.rounded_topright { border-radius: 0 5px 0 0; -moz-border-radius: 0 5px 0 0; -webkit-border-radius: 0 5px 0 0; }
+.rounded_bottomleft { border-radius: 0 0 0 5px; -moz-border-radius: 0 0 0 5px; -webkit-border-radius: 0 0 0 5px; }
+.rounded_bottomright { border-radius: 0 0 5px 0; -moz-border-radius: 0 0 5px 0; -webkit-border-radius: 0 0 5px 0; }
+
+body 
+{
+  min-width: 472px;
+  overflow-x: hidden;
+}
+
+img 
+{
+  display:block;
+  .boxshadow;
+  .box(@grey);
+  .rounded;
+  width: @column * 4 - @gutter;
+  &:nth-child(2n - 1) { margin-right:@gutter; }
+  .left;
+  min-height:65px;
+  padding: 0;
+  margin-top:@gutter/2;
+  .ava { .rounded(10px); border: solid 1px @black; .boxshadow; .left; margin:@gutter /2; width:70px; height:70px; }
+  .streamerinfo { padding-top:10px; }
+  .name { .serif; .gold; margin-right:@gutter; }
+  .description { display:block; margin-top:@gutter /2; padding-right:5px; .bronze; overflow:hidden; word-wrap: break-word; }
+  &:hover { 
+    .box(@darkblue); 
+    .name { color:@gold + #333; }
+    .description { color:@blue + #555 }
+  }
+  &:active { .pressedbox(@darkblue /2); }
+}

@@ -1,0 +1,1901 @@
+
+<!-- saved from url=(0042)http://speedrunslive.com/style/styles.less -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css"></style><link type="text/css" rel="stylesheet" href="chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/style.css"><script type="text/javascript" charset="utf-8" src="chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/page_context.js"></script></head><body screen_capture_injected="true"><pre style="word-wrap: break-word; white-space: pre-wrap;">//
+//
+//
+// SpeedRunsLive stylesheet
+//
+
+// fun mode
+// *:hover { .insetboxshadow2; .transition(15s);-webkit-transform: rotate(-90deg);-moz-transform: rotate(-90deg);-ms-transform: rotate(-90deg);-o-transform: rotate(-90deg);} 
+
+//
+//
+//
+// Color
+//
+
+@gold: #f7e279; .gold { color: @gold; text-shadow: 1px 1px 0px rgba(0,0,0,0.6), 0 0 1px @gold*(4/7); }
+@silver: #bec7d2; .silver { color: @silver; text-shadow: 1px 1px 0px rgba(0,0,0,0.6), 0 0 1px @silver*(4/7); }
+@bronze: #e09456; .bronze { color: @bronze; text-shadow: 1px 1px 0px rgba(0,0,0,0.6), 0 0 1px @bronze*(4/7); }
+@red: #fa5050; .red { color: @red; }
+@green: #52d64f; .green { color: @green; }
+@grey: #424242;
+@black: #000;
+@white: #fff;
+@twitter: #6adbfc;
+@lightgrey: #808080; .grey { color: @lightgrey; }
+@popred: #c01614;
+@darkgrey: #111;
+@darkred: #7c0605;
+@darkblue: #1448b3;
+@blue: #3c70df;
+
+//
+//
+//
+// Font
+//
+
+.sans {
+	font-family: Helvetica, Arial, sans-serif;
+	font-weight: normal;
+	font-size:0.88em;
+}
+
+.serif {
+	font-family: 'Merriweather', Georgia, serif;
+	font-weight:800;
+	font-size:1.21em;
+}
+@smaller: 85%;
+@evensmaller: 75%;
+.small {font-size:@evensmaller;}
+
+//
+//
+//
+// Page setup
+//
+
+html, body {
+	background: @darkgrey;
+	color: @silver;
+	.sans;
+	padding: 0;
+	margin: 0;
+	height: 100%;
+	text-shadow: 1px 1px 0px rgba(0,0,0,0.3); // a bit experimental here but i think it works good!
+	line-height:15px;
+}
+.always_scrollbar {
+	overflow-y: scroll;
+}
+
+@column: 122px;
+@gutter: 16px;
+@pagewidth: (@column * 8);
+
+// container is for normal pages that fit within the grid.
+.container { 
+	//background: url('http://c15111086.r86.cf2.rackcdn.com/goodgrid.jpg') repeat-y top center; // grid debug thing
+	width: @pagewidth;
+	margin: 0 auto;
+	padding: (@gutter / 2) 0 @gutter @gutter;
+	overflow: auto;
+}
+
+// container2 is for streams/races where it should utilize more of the screen space.
+.container2 { 
+	width:100%;
+	min-width: @pagewidth + @gutter;
+	margin: 0 auto;
+	overflow:hidden;
+	padding-bottom:@gutter;
+}
+
+// use this to specify how many columns wide a page section should be.
+.width(@width) { width: @column * @width - @gutter; margin-right:@gutter; }
+
+header {
+	background: url("http://c15111086.r86.cf2.rackcdn.com/texture_bar2.jpg") top center;
+	border-bottom: 1px @grey dotted;
+	.boxshadow;
+	padding-top:@gutter / 2;
+}
+
+@footerheight: 28px;
+footer {
+	background: url("http://c15111086.r86.cf2.rackcdn.com/texture_bar_footer2.jpg") top center;
+	border-top: 1px @grey dotted;
+	.boxshadow; // doesn't seem like this would do anything but it actually gives a very slight shadow ABOVE the footer.
+	color:@lightgrey;
+	font-size: @smaller;
+	line-height:@smaller;
+	text-align:center;
+	width: 100%;
+	.left { margin-left: @gutter /2; }
+	.right { margin-right: @gutter /2; }
+	
+	//stupid positioning fix
+	position: relative;	
+	margin-top: -(@footerheight) - 1; /* negative height minus border */
+	height: @footerheight; 
+	clear:both;
+	.container { padding: (@gutter / 2) 0; }
+}
+#wrap { min-height:100% }
+#main { 
+	//overflow:hidden; 
+	padding-bottom: @footerheight;}
+#logo {
+	background: url("http://c15111086.r86.cf2.rackcdn.com/srl_350px.png") no-repeat;
+	display: block;
+	overflow: hidden;
+	width: 350px; // visually, 3 columns
+	height:50px;
+	margin-bottom:@gutter - 3px;
+	span { display:none; }
+	.left;
+}
+
+#headerright {
+	display:block;
+	overflow: hidden;
+	height:50px;
+	margin-bottom:@gutter - 3px;
+	.width(5);
+	.right;
+	text-align:center;
+	.serif;
+	line-height:18px;
+	color:desaturate(@green, 15%) * 1.15;
+	span {color:desaturate(@blue, 10%) * 1.3;}
+	a { display:block; padding-top:10px; &amp;:hover {color:@green * 2.2; span { color:@blue * 2;}} }
+}
+
+nav ul {
+	margin: 0; padding: 0; text-indent:0;
+	clear:both;
+	li { list-style-type:none; margin:0 0 @gutter 0; padding: 0; a { .smallbuttonstyle; width:@column - @gutter - 1px; padding: @gutter/4 0; margin: 0 @gutter 0 0;}}
+}
+
+//
+//
+//
+// Universal stuff
+//
+
+::selection { background: rgba(0, 0, 0, .6); color:@gold; } // custom selection for fun.
+strong { color:@gold; .bold; }
+h1 { .serif; color:@bronze; margin: (@gutter / 2) 0 0; padding: (@gutter/2) 0; img {position:absolute; margin: 0 @gutter/2;} word-wrap: break-word; overflow: hidden; a { text-decoration:underline } }
+h2 { display:block; margin:0 0 @gutter/2; color:@gold; .bold; clear:both; font-size:100%;}
+h4 { display:block; margin:(@gutter/2) 0; color:@gold; .bold; }
+a { color:inherit; text-decoration:none; &amp;:hover { color:@white;}}
+p {	margin:0px;	padding:0 0 (@gutter / 2); }
+ul { 
+	margin-left: 0;
+	padding-left: 1em;
+	text-indent: -1em; 
+	margin-top:2px;
+	
+	li { 
+		list-style-type:square; 
+		list-style-position: inside; 
+		padding-bottom:10px;
+	}
+}
+.noselect { -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none; } //mostly for bingo.
+table { width:100%; border-spacing: 0px; border-collapse: collapse; padding: 0;}
+td { border: 0; padding:0; }
+th { .box_gradient(@popred); color:@gold; .textshadow; .bold; }
+#skypedetectionswf { position: absolute; overflow: hidden; top: -999px;} // hiding this. its for user pages.
+.note { color:@lightgrey; font-size: @smaller; } //small grey text
+
+.rounded (@size: 5px) { border-radius: @size; -moz-border-radius: @size; -webkit-border-radius: @size; }
+.rounded_top { border-radius: 5px 5px 0 0; -moz-border-radius: 5px 5px 0 0; -webkit-border-radius: 5px 5px 0 0; }
+.rounded_bottom { border-radius: 0 0 5px 5px; -moz-border-radius: 0 0 5px 5px; -webkit-border-radius: 0 0 5px 5px; }
+.rounded_topleft { border-radius: 5px 0 0 0; -moz-border-radius: 5px 0 0 0; -webkit-border-radius: 5px 0 0 0; }
+.rounded_topright { border-radius: 0 5px 0 0; -moz-border-radius: 0 5px 0 0; -webkit-border-radius: 0 5px 0 0; }
+.rounded_bottomleft { border-radius: 0 0 0 5px; -moz-border-radius: 0 0 0 5px; -webkit-border-radius: 0 0 0 5px; }
+.rounded_bottomright { border-radius: 0 0 5px 0; -moz-border-radius: 0 0 5px 0; -webkit-border-radius: 0 0 5px 0; }
+
+.textshadow { text-shadow: 1px 1px 3px @darkgrey; }
+.boxshadow { box-shadow: 1px 1px 2px rgba(0, 0, 0, .6); -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, .6); -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .6); }
+.insetboxshadow { box-shadow: inset 0px 0px 50px rgba(0, 0, 0, .6); -moz-box-shadow: inset 0px 0px 50px rgba(0, 0, 0, .6); -webkit-box-shadow: inset 0px 0px 50px rgba(0, 0, 0, .6); }
+.insetboxshadow2 { box-shadow: inset 0px 0px 50px rgba(255, 255, 255, .3); -moz-box-shadow: inset 0px 0px 50px rgba(255, 255, 255, .3); -webkit-box-shadow: inset 0px 0px 50px rgba(255, 255, 255, .3); }
+.noboxshadow { box-shadow: 0 0 0 rgba(0, 0, 0, .6); -moz-box-shadow: 0 0 0 rgba(0, 0, 0, .6); -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, .6); }
+.liteboxshadow { box-shadow: 1px 1px 1px rgba(0, 0, 0, .45); -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, .45); -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, .45); }
+.boxglow(@color: @blue) { box-shadow: 0 0 8px @color; -moz-box-shadow: 0 0 8px @color; -webkit-box-shadow: 0 0 8px @color;}
+
+.box(@color) { .box_gradient(@color); border-width: 1px 0px 1px 1px; border-style: solid; border-color: lighten(@color, 4%) darken(@color, 33%) darken(@color, 33%) lighten(@color, 2%); }
+// I cannot let pressedbox push it down 1px because of stupid .click() issue with the span in the button tag. w/e
+.pressedbox(@color) { .box_gradient(@color); .noboxshadow; /*position:relative; top:1px;*/ border-width: 1px 0px 1px 1px; border-style: solid; border-color: lighten(@color, 4%) darken(@color, 25%) darken(@color, 25%) lighten(@color, 2%); }
+.italic { font-style: italic; }
+.bold {	font-weight:700; }
+.left {	float:left; }
+.right { float:right; }
+.center { text-align:center; }
+
+.box_gradient(@color) {
+  background-color: @color;
+  @gcolor: darken(@color, 7%);
+  background-image: url("http://c15111086.r86.cf2.rackcdn.com/grunge_button.png"), -webkit-gradient(linear, left top, left bottom, from(@color), to(@gcolor)); /* Saf4+, Chrome */
+  background-image: url("http://c15111086.r86.cf2.rackcdn.com/grunge_button.png"), -webkit-linear-gradient(top, @color, @gcolor); /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background-image: url("http://c15111086.r86.cf2.rackcdn.com/grunge_button.png"),   -moz-linear-gradient(top, @color, @gcolor); /* FF3.6 */
+  background-image: url("http://c15111086.r86.cf2.rackcdn.com/grunge_button.png"),    -ms-linear-gradient(top, @color, @gcolor); /* IE10 */
+  background-image: url("http://c15111086.r86.cf2.rackcdn.com/grunge_button.png"),     -o-linear-gradient(top, @color, @gcolor); /* Opera 11.10+ */
+  background-image: url("http://c15111086.r86.cf2.rackcdn.com/grunge_button.png"),        linear-gradient(to bottom, @color, @gcolor);
+}
+
+.transition(@time) { // I dont use this yet but maybe I will at some point
+	transition: all @time linear;
+	-moz-transition: all @time linear; /* Firefox 4 */
+	-webkit-transition: all @time linear; /* Safari and Chrome */
+	-o-transition: all @time linear; /* Opera */
+}
+
+.smallbuttonstyle {
+	background-image: url("http://c15111086.r86.cf2.rackcdn.com/grunge_button.png");
+	.box(@grey);
+	text-align:center;
+	display:block;
+	.bold;
+	color:@silver;
+	margin:0;
+	.left;
+	.boxshadow;
+	.rounded;
+	.noselect;
+	cursor:pointer;
+	
+	&amp;:hover {
+		.box(@blue);
+		color:@white;
+	}
+	
+	&amp;:active {
+		.pressedbox(@darkblue);
+		color:@white;
+	}
+}
+
+.smallbutton {
+	.smallbuttonstyle;
+	width:@column - @gutter - 1px;
+	margin-right:@gutter;
+	margin-bottom:@gutter / 2;
+	padding: 4px 0;
+	text-decoration:none;
+}
+
+#racefeed { .width(4); }
+
+
+//
+//
+//
+// Twitter
+//
+
+#twitterSide { .width(2); .right; }
+#twitter { color: @twitter; padding-left:33px; a {text-decoration:none;}}
+#twitterbird { position:absolute; margin-left:-33px; width:26px; height:18px; background-image: url('http://c15111086.r86.cf2.rackcdn.com/twitter.png'); }
+#twitter a:hover {
+	#twitterbird { background-position: 0 -18px; }
+}
+
+#twitter_update_list {
+	a {
+		.right; 
+		color:@lightgrey; 
+		text-align:right; 
+		&amp;:hover {color:@twitter;}
+	}
+	
+	text-indent:0; padding-left:0; margin-top:0;
+	
+	span {
+		display:block;
+		a {
+			display:inline;
+			float:none;
+			color:@twitter;
+			&amp;:hover { color:@white; }
+		}
+	}
+	
+	li { display:block; padding-bottom:@gutter; margin-bottom:@gutter;}
+}
+
+//
+//
+//
+// Random champ
+//
+
+#randomchamp {
+	.center;
+	margin-top:@gutter * 2;
+	a { .bold; }
+}
+
+
+//
+//
+//
+// Live Races.
+//
+
+#liveRaces { .width(6); }
+@jtv_bar: 29px;
+.racebar {
+	display:block;
+	width: (@column * 6) - (@gutter * 2);
+	.box(@grey);
+	.rounded;
+	.boxshadow;
+	overflow:auto;
+	margin-bottom: @gutter/2;
+	padding: (@gutter/4) (@gutter/2) (@gutter/4);
+	.bold;
+	cursor:pointer;
+	
+	&amp;.lit {
+		.box(@darkred);
+		&amp;:hover { .box(lighten(@darkred,10%); }
+	}
+	
+	&amp;:hover {
+		.box(@popred);
+		color:inherit;
+	}
+	
+	&amp;:active {
+		.pressedbox(@darkred);
+		color:inherit;
+	}
+	
+	.right { text-align:right; }
+	.left { .width(4); }
+	div { padding-top:1px; }
+	strong { .serif }
+}
+
+.race_img {
+	padding-top:0px;
+	.left;
+	.rounded;
+	height:40px;
+	width:80px;
+	margin-right: @gutter/2;
+	.liteboxshadow;
+	background:#000 no-repeat;
+	background-size: 86px 64px;
+	background-position: 0 -3px;
+}
+
+/*
+.streamsize(@size) {
+	width: 100% / @size;
+	.left;
+	margin-bottom:@gutter / 2; 
+	
+	object { 
+		width: 100%;
+		height: 200px;
+	}
+	
+	.stream_namebar {
+		.rounded_top;
+		.textshadow;
+		padding: 2px @gutter/2 1px;
+		.box(@darkred / 2);
+		.bold;
+		strong { .serif; }
+	}
+}
+
+.stream_big { .streamsize(2); }
+.stream_small { .streamsize(3); font-size:@smaller; }
+.stream_group { display:none; }
+
+//old shit
+@jtv_bar: 29px;
+.streamsize(@size) {
+	width: (@column * @size) - (@gutter);
+	.left;
+	margin-right: @gutter;
+	&amp;:nth-child(3n-1) {	margin-right: 0; }
+	margin-bottom:@gutter / 2; 
+	
+	object { 
+		width: (@column * @size) - @gutter;
+		height: (9/16) * ((@column * @size) - @gutter) + @jtv_bar;
+	}
+	
+	.stream_namebar {
+		.rounded_top;
+		.textshadow;
+		width: (@column * @size) - (@gutter * 2) - 1;
+		padding: 2px @gutter/2 1px;
+		.box(@darkred / 2);
+		.bold;
+		strong { .serif; }
+	}
+}
+
+.stream_big { .streamsize(3); }
+.stream_small { .streamsize(2); font-size:@smaller; }
+.stream_group { display:none; }
+.stream_racebar {
+	width: (@column * 6) - (@gutter * 2);
+	.box(@grey);
+	.rounded;
+	.boxshadow;
+	overflow:auto;
+	margin-bottom: @gutter/2;
+	padding: (@gutter/4) (@gutter/2) (@gutter/4);
+	.bold;
+	
+	&amp;.lit {
+		.box(@darkred);
+		&amp;:hover { .box(lighten(@darkred,10%); }
+	}
+	
+	&amp;:hover {
+		cursor:pointer;
+		.box(@darkred);
+	}
+	
+	.race_img {
+		padding-top:0px;
+		.left;
+		.rounded;
+		height:40px;
+		width:80px;
+		margin-right: @gutter/2;
+		background-size: 200%;
+		background-position: 35% 50%;
+		.boxshadow;
+	}
+	
+	.right { text-align:right; }
+	div { padding-top:1px; }
+	strong { .serif }
+} */
+
+//
+//
+//
+// FAQ
+//
+
+#faq { .width(6); .left; a {text-decoration:underline;}}
+#faqNav { .width(2); margin-top:@gutter*1.5 + 3px; .right; a { display:block; }}
+
+#backToTopButton {
+	display:block;
+	position:fixed;
+	bottom:@gutter*3.15; // kind of sketchy but w/e
+	.width(2);
+	text-align:right;
+	.rounded;
+	.box(@darkgrey);
+	padding:3px 10px;
+	.bold;
+	&amp;:hover {.box(@darkred);}
+	&amp;:active { .box(@darkred / 2);}
+}
+
+code {
+	//display:inline-block;
+	.box(@darkgrey);
+	.rounded;
+	padding:1px 5px;
+	.monospace;
+}
+
+.monospace {
+	.cuprum;
+	.bold;
+	font-size:1.05em;
+	color:#ced7e2;
+}
+
+.irc {
+	display:block;
+	background:@black;
+	padding: 2px 10px;
+	.monospace;
+	margin-bottom: @gutter * 2;
+	.rounded;
+}
+
+#commandlist {
+	h1 img { position:relative; &amp;:hover { .boxglow; } }
+	h2 { .cuprum; font-size:1.31em; border-bottom: 1px dotted @grey; padding-bottom:4px; margin-bottom:12px; margin-top:12px; }
+	img { vertical-align:bottom; margin-right:4px; }
+}
+
+#glossary {
+	a { text-decoration:underline; }
+	h1 { margin-left:@column*2; }
+	.width(6);
+	.left;
+	table {
+		td:first-child { .width(2); text-align:right; .bold; padding-right:@gutter; }
+		td { padding-bottom:@gutter / 2; vertical-align:top; }
+	}
+	.term { .width(2); }
+}
+
+.cuprum { font-family: 'Cuprum', sans-serif; letter-spacing:1px; }
+
+#faqHead {
+	margin-top:@gutter;
+	a { 
+		.smallbuttonstyle;
+		.box(@green / 2);
+		width: @column*2 - @gutter - 1px;
+		margin-right:@gutter;
+		.left;
+		padding: 5px 0;
+		&amp;:hover { .box(@green * (3/4)); }
+		&amp;:active { .pressedbox(@green / 2); }
+		color:#b6dec7;
+	}
+}
+
+//
+//
+//
+// Profile
+//
+
+#stats col { width:@column;}
+
+.icons {margin-right:@gutter / 4; &amp;:hover {cursor:pointer;} }
+
+.avatar{
+	width: @column - @gutter - 2px;
+	height: @column - @gutter - 2px;
+	display: inline-block;
+	border: solid 1px @black;
+	overflow: hidden;
+	.rounded(10px);
+	.boxshadow;
+	margin-bottom:@gutter / 2;
+}
+
+#profile_name     { .width(1); .left; }
+#profile_gamelist { 
+	.width(3); 
+	.left; 
+	table { width: 100%; } 
+	td:nth-child(2){text-align:right;}
+	tr:hover { background:@darkblue; color:@white; cursor:pointer; }
+}
+#profile_races    { .width(4); .left; margin-bottom:@gutter; min-height:1000px; }
+
+#awards {
+	
+	figure {
+		text-align: center;
+		margin:0;
+		width: @column - @gutter -1px;
+		.rounded(10px);
+		.boxshadow;
+		margin-bottom:@gutter;
+		.box(@grey);
+		height:64px;
+		cursor:default;
+		
+		figcaption {
+			position:relative;
+			bottom:4px;
+			.center;
+			font-size:@smaller;
+			.rounded;
+			.box(@darkgrey);
+			//background: rgba(0, 0, 0, 0.6);
+			margin: 1px 2px 2px 1px;
+			.bold;
+		}
+		
+	}
+	
+	.special_sticker {
+		.box(#1040a0);
+	}
+}
+
+//
+//
+//
+// Race Results
+//
+
+#changeStats {
+	list-style-position:outside;
+	li { 
+		padding:0 5px;
+		.rounded;
+		.grey;
+		&amp;:nth-child(1) { color:@white; margin-bottom:5px; }
+		&amp;:nth-child(2) { .gold; }
+		&amp;:nth-child(3) { .silver; }
+		&amp;:nth-child(4) { .bronze; }
+		&amp;:hover { background:@darkblue; color:@white; cursor:pointer; }
+	}
+}
+
+#buttonCollection {
+	.live { 
+		.bold;
+		position:relative;
+		bottom:7px;
+		font-size: @smaller;
+		color:@red;
+	}
+}
+
+
+.raceResults { // this can be used for a lot of tables.
+	margin-bottom:@gutter; 
+	.rounded;
+	background-image: url('http://c15111086.r86.cf2.rackcdn.com/greybg.jpg');
+	
+	tr:nth-child(2n) { background:rgba(0, 0, 0, 0.12); }
+	th:first-child{ .rounded_topleft; }
+	th:last-child{ .rounded_topright; }
+	td { padding-bottom:1px; }
+	td:nth-child(1) { padding-left:@gutter / 2; }
+	
+	.boxshadow;
+}
+
+.raceFeedRating {
+	color:@lightgrey;
+	text-align:right;
+	width:20px;
+	padding:0;
+	font-size:@smaller;
+	.italic;
+}
+
+.raceFeedArrow {
+	text-align:center;
+	width:10px;
+	padding-right:7px;
+	padding-left:10px;
+	font-style:normal;
+}
+
+
+.raceResults td:nth-child(1) { min-width: @column * (1/4); color:@lightgrey;}
+.raceResults td:nth-child(2){ min-width: @column * (9/8); }
+.raceResults td:nth-child(3) { min-width: @column * 0.5; } // there's a good reason for this number but I forgot what it was
+.raceResults td:nth-child(4) { min-width: @column * (4/7); }
+
+.raceFeedRatingChange {
+	text-align:right;
+	width:15px;
+	padding: 0 @gutter/2 0 @gutter;
+	font-size:@smaller;
+	.italic;
+}
+
+span.raceMessage {
+    position:relative;
+	z-index:24;
+	.rounded;
+	background:#282828;
+	color:darken(@silver, 10%);
+	font-size:@smaller;
+	}
+span.raceMessage:hover{z-index:25; background-color:@darkblue; color:@white; cursor:default; }
+span.raceMessage span{display: none}
+span.raceMessage:hover span{
+    display:block;
+	font-weight:normal;
+    position:absolute;
+	.rounded;
+    top:-6px; left:15px; width:192px;
+    border:1px solid @darkblue;
+    background-color:@darkgrey; 
+	box-shadow: inset @darkblue 0 0 6px, @black 2px 2px 10px, @darkblue 0 0 2px; // cute glow
+	padding:6px;
+	color:#bec7d2;
+    text-align: center; 
+	margin-bottom:-20px;
+	word-wrap: break-word; // FFFFFFFFFFFFFFFFFFFUUUUUUUUUUUUUUUUUUUUUUUU
+	overflow: hidden;
+}
+
+
+//
+//
+//
+// Rating
+//
+
+.playersListRank { width: 32px; }
+.playersListName { } //heh
+.playersListRating { width:55px; }
+
+//ooh I'm such a clever bastard
+.ratingcolors (@fg, @bg) {
+	background-image: url('http://c15111086.r86.cf2.rackcdn.com/grunge_button.png');
+	border-left:4px @fg solid;
+	.boxshadow;
+	background-color: @bg;
+	tr {
+		color:@fg;
+		&amp;:nth-child(2n) { background:rgba(0, 0, 0, 0.085); }
+	}
+}
+
+// Elo colors:
+/*
+.roverall { .ratingcolors (#faffff, #59595b); }
+.r2200 { .ratingcolors (#faffff, #59595b); }
+.r2100 { .ratingcolors (#b8c5ff, #532743); }
+.r2000 { .ratingcolors (#3eb9ff, #1e1856); }
+.r1900 { .ratingcolors (#40d844, #091719); }
+.r1800 { .ratingcolors (#ff2b2b, #1f0000); }
+.r1700 { .ratingcolors (#FC702F, #321111); }
+.r1600 { .ratingcolors (#fab131, #392018); }
+.r1500 { .ratingcolors (#ddd440, #2c222f); }
+.r1400 { .ratingcolors (#ff9783, #1f2445); }
+.r1300 { .ratingcolors (#dda8cf, #1a283b); }
+.r1200 { .ratingcolors (#6eb5df, #172231); }
+.r1100 { .ratingcolors (#99d7a7, #181d27); }
+.r1000 { .ratingcolors (#92a98a, #18211f); }
+.r900  { .ratingcolors (#95939b, #1f1c1c); }
+.r800  { .ratingcolors (#95937b, #211c17); }
+.r700  { .ratingcolors (#957370, #161311); }
+.r600  { .ratingcolors (#894040, #101010); }
+.r500  { .ratingcolors (#892020, #0A0A0A); }
+.r400  { .ratingcolors (#5e2b65, #070707); }
+.r300  { .ratingcolors (#502065, #040404); }
+.r200  { .ratingcolors (#401065, #020202); }
+.r100  { .ratingcolors (#200065, #000000); }
+*/
+
+ // New colors 
+.r1 { .ratingcolors (#efe3eb, #453b40);  } // white
+.r2 { .ratingcolors (#ff9ff0, #40264b);  } // purple
+.r3 { .ratingcolors (#57c2ff, #232c46);  } // blue
+.r4 { .ratingcolors (#68df98, #223025);  } // green
+.r5 { .ratingcolors (#e4c17c, #282422);  } // gold
+.r6 { .ratingcolors (#b4b9bf, #1d2028);  } // silver
+.r7 { .ratingcolors (#d6a59a, #2b1713);  } // bronze
+.r8 { .ratingcolors (#808080, #1b1b1b);  } // unranked
+#unranked { 
+	.center;
+	&amp;:hover { 
+		cursor:pointer;
+		color:@white; 
+	}
+}
+
+.rwhite { .ratingtxtcolors (#efe3eb, #453b40);  } 
+.rpurple { .ratingtxtcolors (#ff9ff0, #40264b); }
+.rblue { .ratingtxtcolors (#57c2ff, #232c46);   } 
+.rgreen { .ratingtxtcolors (#68df98, #223025);  }
+.rgold { .ratingtxtcolors (#e4c17c, #282422);   } 
+.rsilver { .ratingtxtcolors (#b4b9bf, #1d2028); } 
+.rbronze { .ratingtxtcolors (#d6a59a, #2b1713); }
+.rgrey { .ratingtxtcolors (@lightgrey, @black); }
+
+.ratingtxtcolors (@fg, @bg) {
+	color: @fg; // lol I dont even use @bg at all here but w/e
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7), 0 0 1px @fg*(4/7); // this makes the text look very slightly better in both chrome/ff
+}
+
+.club { margin-bottom: @gutter / 4; td { padding: 0 0 0 (@gutter/2); &amp;:last-child { padding-right: (@gutter/2)} } }
+
+.rankArrow { margin: 0 1px 1px 0; } // might use this
+
+//
+//
+//
+// Channel
+//
+
+#channel_info { .right; .width(2); a { text-decoration:underline; } }
+#mibbit_embed { .width(6); border:0; .boxshadow; margin-top:@gutter; height:550px; margin-bottom: @gutter / 2; .rounded; }
+
+//
+//
+//
+// About SRL
+//
+
+.cosmo { color:#58d95e; .bold; }
+.puchiedarcy { color:#fd6f6f; .bold; }
+.jiano { color:#5cb3f0; .bold; }
+.bmn { color:#a190ff; .bold; }
+.sluip { color: #d9ca69; .bold; }
+.izu { color: #69d9bb; .bold; }
+
+#about_left { .left; margin-left:@column * 2; padding-top:30px} // lines up with the baseline of the H1 to the right.
+.developers { .width(1); .left; text-align:right; }
+.roles { .width(2); .left; }
+
+#about_right { .right; margin-right:@column * 2; padding-top:30px; }
+
+#aboutSRL { .width(5); .right; }
+
+//
+//
+//
+// SotN Inventory Race
+//
+
+#sotn-inventory { .serif; margin:@gutter*2 0; }
+#sotn-desc { margin-top:@gutter * 2; .width(3); .grey; .italic;}
+
+#oot-restriction { .serif; margin:@gutter*2 0; }
+#oot-desc { margin-top:@gutter * 2; .width(3); .grey; .italic;}
+
+//
+//
+//
+// Tools
+//
+
+#tools { 
+	a { text-decoration:underline; }
+	
+	.newcard {
+		.smallbuttonstyle;
+		width:@column - @gutter - 1px;
+		margin-right:@gutter;
+		margin-bottom:@gutter / 2;
+		padding: 4px 0;
+		text-decoration:none;
+		
+		&amp;:nth-child(2n) { margin-right:0; }
+	}
+	
+}
+#tools_left { .width(4); .left; }
+#tools_right { .width(4); .right; }
+#bingo_desc { .width(2); }
+
+.customhover(@color) {
+		&amp;:hover { .box(@color);	}
+		&amp;:active { .pressedbox(@color * (2/3)); }
+}
+
+#bingo_list { 
+	.width(2); .right; margin-right:0;
+	
+	.oot{       .customhover(#c72027); }
+	.mm{        .customhover(#8b3eb2); }
+	.sm{        .customhover(#f88010); }
+	.sotn{      .customhover(#b99b8f); }
+	.sm64{      .customhover(#e72c2c); }
+	.smw{       .customhover(#48d024); }
+	.pokemonrb{ .customhover(#7387c2); }
+	.pokemoncrystal { .customhover(#9acfd7);}
+}
+
+//
+//
+//
+// Game list
+//
+
+#gamelist {
+	display:none;
+	.very_popular {
+		display:block;
+		.racebar;
+		width: @column * 4 - @gutter*2 - 1;
+		margin-right:@gutter;
+		margin-bottom:1px;
+		.rounded(0);
+		cursor:pointer;
+		
+		&amp;:nth-child(2) { .rounded_top; .gamerank {color:@gold;}}
+		&amp;:nth-child(3) { .gamerank {color:@silver;}}
+		&amp;:nth-child(4) { .gamerank {color:@bronze;}}
+		&amp;:last-child { .rounded_bottom; }
+		//&amp;:nth-child(2n+1) { .box(darken(@grey, 6%); } /* no longer needed because of the linear gradient. */
+		&amp;:hover { .box(@popred); .popBar{background:@popred;} }
+		&amp;:active { .pressedbox(@darkred); .popBar{background:@darkred;} }
+		strong {color:@silver;}
+		
+		.popBar {
+			display:block;
+			float:left;
+			margin-top:7px;
+			.rounded;
+			background: @grey;
+			height:7px;
+		}
+	}
+	
+	h1 { clear:both; }
+	
+	.popularity {
+		.left;
+		.width(4);
+	}
+	
+	.alphabetical {
+		.left;
+		.width(4);
+	}
+	
+	#alphalist {
+		//height:1217px; this was the old height for like 25 games
+		height:486px;
+		overflow-y:scroll;
+		
+		margin-top:@gutter / 2;
+		border-top:2px @grey solid;
+		border-bottom:2px @grey solid;
+		.boxshadow;
+	}
+	
+	.gamerank {
+		.right;
+		color:@lightgrey;
+	}
+	
+	.letterpicker {
+		letter-spacing:3px;
+		width:100%;
+		.serif;
+		text-align:center;
+		
+		a { padding-left:3px; padding-top:3px; }
+		
+		a:hover {
+			color:@gold;
+			background:@darkred;
+			.rounded;
+			.boxshadow;
+		}
+	}
+}
+
+//
+//
+//
+// Game page 
+//
+
+#gamepage {
+	#playerslist {
+		.width(2);
+		.left;
+		
+		table tr td:nth-child(1) { width:30px;	}
+		table tr td:nth-child(3) { text-align:right; width:50px; }
+	}
+	
+	#rightside {
+		overflow:visible;
+		.right;
+		.width(2);
+		img { .width(2); .rounded; .boxshadow; }
+		object { .width(2); .rounded; margin-right:0;}
+		
+		a {text-decoration:underline;}
+		table { margin-bottom:@gutter; a { text-decoration:none; }}
+		th { .box_gradient(@blue); color:@white;}
+	}
+	
+	#centercolumn {
+		.left;
+		.width(4);
+	}
+	
+	#racefeed {
+	}
+	
+	#rules {
+		.width(4);
+		.left;
+		margin-bottom:@gutter;
+		a { text-decoration:underline }
+	}
+	
+	#side_popgoals {
+		.raceResults th { .rounded_top; }
+	}
+}
+
+
+//
+//
+//
+// Mega Man Boss Order
+//
+
+#megaman_bossorder {
+	margin-top:@gutter;
+	.right;
+	background: url('http://c15111086.r86.cf2.rackcdn.com/bossorder_bg.gif');
+	.width(4);
+	height:462px;
+	.rounded;
+	.boxshadow;
+	
+	#imageholder {
+		padding-top:56px;
+		padding-left: 64px;
+		img { margin: 0 38px 38px 0; }
+	}
+}
+
+//
+//
+//
+// New Leaderboard
+//
+
+#leaderboardcontainer {
+	.width(6);
+	margin-left:@column;
+	min-height:1000px;
+}
+#siteleaderboard {
+	.raceResults;
+	th { .box_gradient(@blue); color:@white; .textshadow; .bold; }
+	tr td { .center; padding: 2px 0 1px 0; }
+	color:@lightgrey;
+	tr:nth-child(2) { .gold; }
+	tr:nth-child(3) { .silver; }
+	tr:nth-child(4) { .bronze; }
+}
+
+.lbButton { 
+	.silver;
+	&amp;:hover {
+		cursor:pointer;
+		.gold;
+	}
+}
+
+.litColumn {
+	.insetboxshadow2;
+}
+
+//
+//
+//
+// OldLeaderboard
+//
+
+#leaderboard {
+	#playerslist {
+		.width(2);
+		.left;
+		
+		table tr td:nth-child(1) { width:30px;	}
+		table tr td:nth-child(3) { text-align:right; width:50px; }
+	}
+	
+	#rightside {
+		.right;
+		.width(2);
+		a {text-decoration:underline;}
+		
+		table { 
+			.raceResults; 
+			a { text-decoration:none;} 
+			td:nth-child(1) { width: @column * (1/3); color:@lightgrey; }
+			td:nth-child(3) { text-align:right; padding-right:@gutter / 2; }
+			.smaller { font-size:@smaller; }
+		}
+		
+		.randomchampion { 
+			a { color:@gold; text-decoration:none; &amp;:hover { color:@white; }}
+			
+		}
+	}
+	
+	#middle {
+		.left;
+		.width(4);
+		
+		table { 
+			.raceResults; 
+			a { text-decoration:none;} 
+			td:nth-child(1) { width: @column * (1/3); color:@lightgrey; }
+			td:nth-child(3) { text-align:right; padding-right: @gutter / 2; }
+			td:nth-child(4) { .width(2); text-align:right; padding: 0 @gutter/2 }
+		}
+		
+		#highestratings {
+			clear:both;
+		}
+		
+		#populartables {
+			table {
+				.width(2);
+				.left;
+			}
+			
+			h1 { clear:both; }
+			
+			.gamepic { .right; .width(2); margin:0; .boxshadow; .rounded; max-height: 3/4 * (@column*2 - @gutter) }
+		}
+	}
+	
+}
+
+//
+//
+//
+// 404
+//
+
+#error404 {
+	.width(8);
+	.center;
+	h1 { .red }
+	margin-top:@column;
+}
+
+//
+//
+//
+// Tools -&gt; Bingo
+//
+#buttonholder { width:100%; }
+#bingoPage {
+	#results { .left; .width(5); text-align:right;}
+
+	.newcard {
+		.smallbuttonstyle;
+		width:@column - @gutter - 1px;
+		margin-right:@gutter;
+		padding: 4px 0;
+		&amp;:last-child { margin-right:0; }
+	}
+	
+	#bingo {
+		margin-top:@gutter;
+		.noselect;
+		
+		.rowcol {
+			background:#000811;
+			font-size:@evensmaller;
+			color:@blue;
+			.bold;
+			border:1px @darkblue/2 solid;
+			
+			&amp;:hover { color:@white; background:@darkblue; }
+		}
+		
+		tr {
+			&amp;:first-child, &amp;:last-child { 
+				td { height:30px; .rowcol; }
+			}
+		
+			td { 
+				.insetboxshadow;
+				&amp;:first-child {	width:35px;	.rowcol; }
+				
+				padding:0 5px;
+				cursor:pointer;
+				width:95px;
+				height:90px;
+				text-align:center;
+				border:1px @grey solid;
+				background: #000;
+				&amp;:hover, &amp;.hover { background:#001a36; color:#fff; }
+				
+				&amp;.greensquare {
+					background:#005511;
+					&amp;:hover, &amp;.hover { background:#007722; }
+				}
+				
+				&amp;.redsquare {
+					background:#550011;
+					&amp;:hover, &amp;.hover { background:#770022; }
+				}
+			}
+		}
+	}
+
+	#about_bingo {
+		.right;
+		.width(3);
+	}
+
+}
+
+//
+//
+//
+// Races / Streams!
+//
+
+#streamData { display:none; } 
+.featuredgame { font-size:@smaller; }
+#featuredStream { 
+	.width(6);
+	object { 
+		width: (@column * 6) - @gutter;
+		height: (9/16) * ((@column * 6) - @gutter) + @jtv_bar;
+	}
+	
+	h1 a {
+		text-decoration:none;
+	}
+	
+	.morestreams {
+		.grey;
+		&amp;:hover { color:@white; }
+		.right;
+	}
+}
+
+#featuredStreamContainer {
+	//min-height: (9/16) * ((@column * 5) - @gutter) + @jtv_bar + 20px;
+	min-height:435px;
+}
+
+
+.ls_objectContainer,
+.ls_objectContainer &gt; div,
+.ls_objectContainer &gt; img,
+.ls_objectContainer object {
+    border:0;
+    padding:0;
+    margin:0;
+    position:relative;
+    top:0;
+    bottom:0;
+    left:0;
+    width:100%;
+    display:block;
+}
+
+.ls_objectContainer {
+	width:auto;
+	div {position:absolute; overflow:hidden;}
+	object {height:100%;}
+	img {padding-bottom: @jtv_bar; z-index:-1000;}
+	margin-left:@gutter;
+}
+
+.liquidstream {
+	width:100%;
+	float:left;
+	margin-bottom:@gutter;
+}
+
+.ls_small {	width: 100%; }
+
+.ls_namebar {
+	margin-left:@gutter;
+	overflow:hidden;
+}
+
+.ls_name {
+	height:21px;
+	.box(@darkred);
+	.rounded_topleft;
+	width:100%;
+}
+
+#noStreams { 
+	.serif;
+	text-align:center;
+	.left;
+	margin-left:@gutter;
+	.red;
+	.textshadow;
+}
+
+#streamBlock { display:none; }
+#streamBlockList { display:none; }
+
+.ls_padder { padding:3px 8px;}
+
+.ls_icons {
+	width:25px;
+	
+	a {
+		display:block;
+		width: 25px; //width:42px;
+		height:21px;
+	}
+}
+
+.chatIcon { 	
+	background-position:-9px 0;
+	.box(@darkred);
+	&amp;:hover { .box(@popred); cursor:pointer; background-image: url('http://c15111086.r86.cf2.rackcdn.com/icon_chat.png'), url('http://c15111086.r86.cf2.rackcdn.com/grunge_button.png'); background-position: -9px -21px; } // this seems sloppy but what can I do??
+	&amp;:active { .pressedbox(@darkred * 3/4); background-image: url('http://c15111086.r86.cf2.rackcdn.com/icon_chat.png'), url('http://c15111086.r86.cf2.rackcdn.com/grunge_button.png'); background-position: -9px -21px; }
+	background-image: url('http://c15111086.r86.cf2.rackcdn.com/icon_chat.png'), url('http://c15111086.r86.cf2.rackcdn.com/grunge_button.png');
+	span { display:none; }
+}
+.closeStreamIcon { 	
+	background-position:-9px 0;
+	.box(@darkred);
+	&amp;:hover { .box(@popred); cursor:pointer; background-image: url('http://c15111086.r86.cf2.rackcdn.com/closeStream.png'), url('http://c15111086.r86.cf2.rackcdn.com/grunge_button.png'); background-position: -9px -21px; }
+	&amp;:active { .pressedbox(@darkred * 3/4); background-image: url('http://c15111086.r86.cf2.rackcdn.com/closeStream.png'), url('http://c15111086.r86.cf2.rackcdn.com/grunge_button.png'); background-position: -9px -21px; }
+	background-image: url('http://c15111086.r86.cf2.rackcdn.com/closeStream.png'), url('http://c15111086.r86.cf2.rackcdn.com/grunge_button.png');
+	.rounded_topright;
+	span { display:none; }
+}
+.collapseIcon { 
+	display:block;
+	width:25px;
+	height:21px;
+	.box(@darkred);
+	background-position:-9px 0;
+	&amp;:hover { .box(@popred); cursor:pointer; background-image: url('http://c15111086.r86.cf2.rackcdn.com/icon_collapse2.png'), url('http://c15111086.r86.cf2.rackcdn.com/grunge_button.png'); background-position: -9px -21px; }
+	&amp;:active { .pressedbox(@darkred * 3/4); background-image: url('http://c15111086.r86.cf2.rackcdn.com/icon_collapse2.png'), url('http://c15111086.r86.cf2.rackcdn.com/grunge_button.png'); background-position: -9px -21px; }
+	background-image: url('http://c15111086.r86.cf2.rackcdn.com/icon_collapse2.png'), url('http://c15111086.r86.cf2.rackcdn.com/grunge_button.png');
+	span { display:none; }
+}
+.collapseIcon2 { // this is the + icon, toggled via jquery
+	background-position:-51px 0;
+	&amp;:hover { background-position: -51px -21px; }
+	&amp;:active { background-position: -51px -21px; }
+}
+
+.showhide_streams { .smallbutton; }
+.showhide_entrants { .smallbutton; }
+
+.ls_column { .left; }
+
+.numperrow {
+	.smallbutton;
+	width: (@column / 2) - @gutter - 1px;
+	.left;
+ }
+
+#ls_sidebar { width:@column * 2; .right; }
+#ls_controls { margin-top:@gutter; }
+#ls_container {	width:100%; clear:both; }
+#ls_entrants {
+	.boxshadow;
+	
+	#raceTable {
+	
+		white-space: nowrap; //to hell with your username.
+		td:nth-child(3) { text-align:right; padding-right:@gutter; } // make room for long usernames
+		border-bottom:2px @darkblue*(2/3) solid;
+		margin:0; padding:0; 
+
+		.raceResults;
+		
+		tr:nth-child(1) &gt; td:nth-child(1) { margin:0; padding:0; }
+
+		#entrantsBar {
+			.rounded_topleft;
+			.box(@darkblue);
+			.bold;
+			height:21px;
+			line-height:21px;
+			padding-left:10px;
+			margin-left:0;
+			color:@white;
+		}
+		
+		#popoutTd {
+			width:35px;
+		}
+		
+		#popoutHeader {
+			padding:0;
+			margin:0;
+			
+			.popoutIcon {
+				width:35px;
+				display:block;
+				.box(@darkblue);
+				height:21px;
+				float:right;
+				background-position:-4px 0;
+				&amp;:hover { .box(@blue); cursor:pointer; background-image: url('http://c15111086.r86.cf2.rackcdn.com/popOut.png'), url('http://c15111086.r86.cf2.rackcdn.com/grunge_button.png'); background-position: -4px -21px; } // this seems sloppy but what can I do??
+				&amp;:active { .pressedbox(@darkblue * 3/4); background-image: url('http://c15111086.r86.cf2.rackcdn.com/popOut.png'), url('http://c15111086.r86.cf2.rackcdn.com/grunge_button.png'); background-position: -4px -21px; }
+				background-image: url('http://c15111086.r86.cf2.rackcdn.com/popOut.png'), url('http://c15111086.r86.cf2.rackcdn.com/grunge_button.png');
+				span { display:none; }
+			}
+			
+		}
+		
+	}
+
+	/*
+	
+	span {
+		a {
+			text-decoration:none; 
+			color:inherit;
+			display:block;
+			.left;
+			height:22px;
+			width:@column - 1px;
+			padding-top:5px;
+			background:lighten(@darkgrey, 4%); 
+			text-align:center;
+			font-weight:bold;
+			text-shadow: 2px 2px 1px #1a1a1a;
+		}
+		a:hover {text-decoration:none; color:#fff; background:lighten(@darkgrey, 8%); }
+		a:nth-child(1) { margin-right:2px; .rounded_bottomleft; &amp;:hover { background:#205020; color:#62ffd1; } }
+		a:nth-child(2):hover { background:#482048; color:#ffb4f4; } // green and purple, a bit random but I like it.
+	}
+	
+	*/
+}
+
+.ls_streams { margin-right:@column * 2 + @gutter; }
+.ls_row { clear:left; }
+
+.gamepic { .left; .rounded; .boxshadow; margin: @gutter; width:@column; }
+.ls_streams_big { margin-right: 16px; }
+.ls_entrants_hide { display:none; }
+
+#gameAndGoal {
+	width: 70%;
+	h1 &gt; a { text-decoration:none; }
+	padding-left:@gutter;
+	.race_img {
+		position:relative;
+		top:@gutter/2;
+		height:48px;
+	}
+}
+#hideControls {
+	.right;
+	text-align:right;
+	padding-top:@gutter;
+//	.smallbuttonstyle {
+//		width: 100px;
+//		padding: @gutter/8 @gutter/4;
+//		float:right;
+//		font-size:@smaller;
+//	}
+}
+#timer {
+	color:@green;
+}
+
+//
+//
+//
+// Past Results
+//
+
+#past_results {
+	min-height:900px;
+	margin-left:@column;
+	.width(4);
+	.left;
+	
+	#racefeed {
+		//float:right;
+	}
+}
+
+#globalStats {
+	.width(2);
+	.right;
+	margin-right:@column + @gutter;
+}
+
+		//Monthly stats
+		.meteryear {
+			margin-bottom:10px;
+			.noselect;
+			
+			h5 {
+				color: @gold;
+				margin-bottom:3px;
+				.serif;
+				.bold;
+				word-spacing:8px;
+				letter-spacing:2px;
+				text-align:center;
+				font-size:13px;
+				line-height:15px;
+				padding-top:0px;
+				margin-top:0px;
+			}
+			
+			.morestats {
+				display:none;
+				background: #0b0b0b;
+				.boxshadow;
+				padding-left:10px;
+				margin-bottom:1px;
+				font-size:@smaller;
+				opacity:0.85;
+			}
+			
+			.meterbg {
+				position: relative;
+				width: 100%; 
+				height: 20px;
+				background: #151515;
+				&amp;:hover { background:#202020; cursor:pointer;}
+				margin-bottom:1px;
+				.boxshadow;
+				
+				&amp;:nth-child(2) { .rounded_top; .meterfill { .rounded_top }}
+				&amp;:nth-last-child(2) { .rounded_bottom; .meterfill { .rounded_bottom }}
+
+				.meterfill {
+					width: 100%;
+					height: 20px;
+					background: #101a4c;
+					&amp;:hover { background:#192686; }
+					
+					.metervalue {
+						position: absolute;
+						top:0; left:0;
+						padding-top: 3px;
+						height: 20px;
+						.bold;
+						padding-left:10px;
+						width: 100%;
+						
+						&amp;:link, &amp;:visited {text-decoration:none; color:@silver;}
+						&amp;:hover, &amp;:active {text-decoration:none; color:@white;}
+						
+						span {
+							.right;
+							margin-right:20px;
+							color:@lightgrey;
+							.italic;
+							font-weight:normal;
+							font-size:@smaller;
+						}
+					}
+				}
+			}
+		}
+
+//
+//
+//
+// PREV/NEXT buttons
+//
+
+.disabled {
+	opacity:0.65;
+	span { opacity:0.25; }
+}
+
+	#pageSorter {
+		height:40px;
+		button {
+			.smallbutton;
+			width:@column - @gutter;
+			span {
+				display:block;
+				background-position:center 0;
+				min-height:16px;
+			}
+			
+			&amp;:nth-child(4) { margin-right:0; }
+		}
+		
+		#first span { background: url('http://c15111086.r86.cf2.rackcdn.com/arrow_first.png') top center no-repeat; }
+		#prev span { background: url('http://c15111086.r86.cf2.rackcdn.com/arrow_prev.png') top center no-repeat; }
+		#next span { background: url('http://c15111086.r86.cf2.rackcdn.com/arrow_next.png') top center no-repeat; }
+		#last span { background: url('http://c15111086.r86.cf2.rackcdn.com/arrow_last.png') top center no-repeat; }
+		#first:hover { span { background-position:center -16px; }}
+		#prev:hover { span { background-position:center -16px; }}
+		#next:hover { span { background-position:center -16px; }}
+		#last:hover { span { background-position:center -16px; }}
+	}
+
+//
+//
+//
+// Test stuff. im actually using this and it will need to be incorperated into raceResults or w/e
+//
+
+.halfpage {
+	.width(4);
+	.left;
+}
+
+.racenum {
+	.right;
+	font-size:@evensmaller;
+	color:@silver;
+	background:@black;
+	vertical-align:top;
+}
+
+.bigtitle {
+	font-size:115%;
+	background:@silver;
+}
+
+.bigtest {
+	font-size:3em;
+	float:left;
+}
+
+.testrace {
+	tr:nth-child(2) {
+		.box_gradient(@darkred);
+		border-bottom:1px solid rgba(20,20,20,0.65);
+		border-top:1px solid @darkred * (7/10);
+	}
+	th{
+		height:22px;
+		padding:0;
+		margin:0;
+		&amp;:first-child { 
+			font-size:120%;
+			text-align:left;
+			padding-left:@gutter/2;
+			//.serif;
+		}
+		&amp;:last-child { 
+			color:@silver;
+			padding-top:1px;
+			padding-right:8px;
+			padding-left:4px;
+			text-align:right;
+		}
+	}
+	td{
+		padding-top:1px;
+		padding-bottom:1px;
+	}
+	.datetime {
+		.note;
+		color:@grey + @darkred + #222;
+		text-align:right;
+		padding-right:@gutter/2;
+	}
+	.raceGoal {
+		.silver;
+		overflow-wrap:break-word;
+	}
+}
+
+.unranked {
+	text-align:center;
+	.grey;
+	font-size:@smaller;
+	.italic;
+}
+
+//
+//
+//
+// Ajax spinner using CSS3
+//
+
+	#ajaxstage {
+		margin: 20px auto;
+	}
+	
+	#ajaxspin {
+		width: 30px;
+		height: 30px;
+		
+		margin:0 auto;
+		
+		border-width: 2px;
+		border-style: dotted;
+		border-color: @grey*0.5 @bronze*0.6 @silver*0.7 @gold*0.8;
+		border-radius: 40px;
+		
+		-webkit-animation: spin 1s linear infinite; 
+		-moz-animation: spin 1s linear infinite;
+	}
+	
+	@-webkit-keyframes spin  
+	{  
+	    from { -webkit-transform: rotate(0deg); }  
+    	50%  { -webkit-transform: rotate(180deg); }  
+	    to   { -webkit-transform: rotate(360deg); }  
+	}
+	@-moz-keyframes spin  
+	{  
+	    from { -moz-transform: rotate(0deg); }  
+    	50%  { -moz-transform: rotate(180deg); }  
+	    to   { -moz-transform: rotate(360deg); }  
+	}
+
+	#ajaxloading {
+		.bold;
+		margin-top:10px;
+		font-size:@smaller;
+		color: #808080;
+		text-align: center;
+
+		-webkit-animation: bounce 1.5s linear infinite; 
+		-moz-animation: bounce 1.5s linear infinite;
+	}
+	@-webkit-keyframes bounce  
+	{  
+		from { -webkit-transform: rotate(0deg); opacity: 0.4; }
+		50%  { -webkit-transform: rotate(0deg); opacity: 1; }
+		to   { -webkit-transform: rotate(0deg); opacity: 0.4; }
+
+	}
+	@-moz-keyframes bounce  
+	{  
+		from { -moz-transform: rotate(0deg); opacity: 0.6; }
+		50%  { -moz-transform: rotate(0deg); opacity: 1; }
+		to   { -moz-transform: rotate(0deg); opacity: 0.6; }
+	}
+	
+//
+//
+//
+// Team SRL
+//
+
+#featured {
+	.featuredstreamcontainer { 
+		.width(5);
+		.left;
+		margin-bottom:@gutter / 2;
+	}
+	.featuredstream {
+		margin-top:4px;
+		object { width:100%; height:364px; }
+	}
+	.featuredchat {
+		.width(3);
+		margin-top:@gutter;
+		.right;
+		iframe { .rounded; height:400px; }
+	}
+	
+	.biggerFeaturedStream {
+		.width(8);
+		object { 
+			width: (@column * 8) - @gutter;
+			height: (9/16) * ((@column * 8) - @gutter) + @jtv_bar;
+		}
+	}
+}
+
+.twitchstreamer {
+	display:block;
+	.boxshadow;
+	.box(@grey);
+	.rounded;
+	width: @column * 4 - @gutter;
+	&amp;:nth-child(2n - 1) { margin-right:@gutter; }
+	.left;
+	min-height:65px;
+	padding: 0;
+	margin-top:@gutter/2;
+	.ava { .rounded(10px); border: solid 1px @black; .boxshadow; .left; margin:@gutter /2; width:70px; height:70px; }
+	.streamerinfo { padding-top:10px; }
+	.name { .serif; .gold; margin-right:@gutter; }
+	.description { display:block; margin-top:@gutter /2; padding-right:5px; .bronze; overflow:hidden; word-wrap: break-word; }
+	&amp;:hover { 
+		.box(@darkblue); 
+		.name { color:@gold + #333; }
+		.description { color:@blue + #555 }
+	}
+	&amp;:active { .pressedbox(@darkblue /2); }
+}
+
+#left_titletext {
+	display:block;
+	.left;
+	padding-top:@gutter / 2;
+}
+
+#featuredtitle { a {text-decoration:none; .gold; } a:hover{color:@white;} 
+	.closechat {
+		.smallbutton;
+		.right;
+		.sans;
+		margin:0;
+		.bold;
+	}
+}
+
+.watching {
+	.box(@darkred); 
+	.name { color:@gold + #333; }
+	.description { color:@bronze + #333 }
+}
+
+//
+//
+//
+// Popout race result
+//
+
+#individual_race_result {
+	.right;
+	.width(6);
+}
+
+
+
+//
+//
+//
+// SRL Leaderboards mockup
+//
+
+#lbstyle {}
+
+@coolpurple: #8b70b7;
+
+#lbright {
+	.width(2);
+	.right;
+	.lbpic { .width(2); margin:0; .boxshadow; .rounded; max-height: 3/4 * (@column*2 - @gutter) }
+}
+#lbleft { .width(6); .left; }
+
+#catInfo { a {text-decoration:underline; color:@blue; &amp;:hover {color:@white} } }
+
+#recordLeaderboard {
+	margin-bottom:@gutter; 
+	.rounded;
+	background-image: url('http://c15111086.r86.cf2.rackcdn.com/greybg.jpg');
+		
+	tr:nth-child(2n) { background:rgba(0, 0, 0, 0.12); }
+	th { .box_gradient(@coolpurple); .rounded_top; color:@coolpurple * 2.5;}
+	td:nth-child(n+4) { font-size:100%; }
+	td { line-height:20px; height:20px; padding-bottom:1px; padding-top:1px; font-size:110%; img{vertical-align:middle; margin:0px 5px;} }
+	td:nth-child(1) { padding-left:@gutter / 2; .grey;}
+	td:nth-child(2) { text-align:left; }
+	.lbDivide { font-size:@smaller; .center;}
+	.lbCategory { font-size:120%; padding:4px; }
+	tr:nth-child(2){ .box_gradient(@coolpurple / 2); border-bottom:1px solid rgba(20,20,20,0.65); border-top:1px solid @coolpurple * (7/10); .bold; td{.center; color:@coolpurple * 1.5; font-size:90%;}}
+	.boxshadow;
+}
+
+#categorySelect {
+	a {
+		display:block;
+		&amp;:nth-child(1) {.rounded_top;}
+		&amp;:last-child {.rounded_bottom;}
+		width:100%;
+		font-size:90%;
+		.textshadow;
+		.center;
+		.box(desaturate((@coolpurple / 2),10%);
+		margin-bottom:1px;
+		color:@coolpurple * 1.5;
+		span { font-size:115%; display:block; .bold; padding-bottom:5px; color:@coolpurple * 2.5}
+		text-decoration:none;
+		padding:5px 0;
+		&amp;:hover {
+			color:@coolpurple * 1.7;
+			.box(@coolpurple / 1.4);
+		}
+		&amp;:active {
+			color:@coolpurple * 1.3;
+			.box(@coolpurple / 3);
+		}
+	}
+
+	.lbHighlighted {
+		.box(@coolpurple);
+		color:@coolpurple * 2;
+		
+		&amp;:hover {
+			color:@coolpurple * 2.3;
+			.box(@coolpurple * 1.1);
+		}
+		&amp;:active {
+			color:@coolpurple * 1.7;
+			.box(@coolpurple * 0.9);
+		}
+	}
+}</pre></body></html>

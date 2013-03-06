@@ -1,6 +1,6 @@
 /**
  * Sends an XHR GET request to grab streamer info from SpeedRunsLive.com. The
- * XHR's 'onload' event is hooks up to the 'loadRunners' method.
+ * XHR's 'onload' event is hooked up to the 'loadRunners' method.
  *
  * @public
  */
@@ -23,33 +23,23 @@ function requestStreamers()
 function loadRunners(e) 
 {
   var runners = e.target.responseText;
-
   var data = JSON.parse(runners);
 
-  var wrap = document.createElement('div');
-  wrap.setAttribute('id', 'wrap');
-
-  var main = document.createElement('div');
-  main.setAttribute('id', 'main');
-
-  var container = document.createElement('div');
-  container.setAttribute('class', 'container');
-
-  var runnerCount = document.createElement('div');
-  runnerCount.setAttribute('id', 'runnerCount');
-  runnerCount.innerHTML = '<h2>' + String(data.channels.length + ' runners currently streaming</h2>');
-  document.body.appendChild(runnerCount);
+  initializeDoc(data);
 
   var streamerList = loadStreamerList(data);
 
-  container.appendChild(streamerList);
-  main.appendChild(container);
-  wrap.appendChild(main);
-  document.body.appendChild(wrap);
+  var container = document.getElementsByClassName('container');
+
+  container[0].appendChild(streamerList);
 }
 
 /**
  * Loads the streamerList from the given JSON data then returns it.
+ * @param data The JSON data to load the streamer list from.
+ * @return The streamerList as a div to append to the document.
+ *
+ * @private
  */
 function loadStreamerList(data)
 {
@@ -62,28 +52,25 @@ function loadStreamerList(data)
     if (!badGame(channel.meta_game, channel.name))
     {
       var streamer = document.createElement('a');
-      var text = document.createElement('div');
-      var name = document.createElement('span');
-      var image = document.createElement('img');
-      var title = document.createElement('span');
-
       streamer.setAttribute('class', 'twitchstreamer');
       streamer.setAttribute('href', 'http://www.twitch.tv/' + String(channel.name)); //+ '/popout');
       streamer.setAttribute('target', '_blank');
 
-      image.setAttribute('src', channel.image.size70);
-      image.setAttribute('class', 'ava');
-
-      var streamerInfo = document.createElement('div');
-      streamerInfo.setAttribute('class', 'streamerinfo');
-
+      //var text = document.createElement('div');
+      var name = document.createElement('span');
       name.setAttribute('class', 'name');
       name.innerHTML = channel.display_name;
 
+      var image = document.createElement('img');
+      image.setAttribute('src', channel.image.size70);
+      image.setAttribute('class', 'ava');
 
+      var title = document.createElement('span');
       title.setAttribute('class', 'description');
       title.innerHTML = '<p>' + channel.title + '</p>';
 
+      var streamerInfo = document.createElement('div');
+      streamerInfo.setAttribute('class', 'streamerinfo');
       streamerInfo.appendChild(name);
       streamerInfo.innerHTML += channel.current_viewers + ' viewers' + '<br />';
       streamerInfo.appendChild(title);
@@ -99,36 +86,42 @@ function loadStreamerList(data)
 
 /**
  * Initializes the document by loading the top level divs.
- * Loads the data and then returns it.
- * Would be better to have this in two functions, but there is a lot of passing to do then.
+ * @param data The JSON data to load runner count from
+ *
+ * @private
  */
-function initializeDocAndLoadData(e)
+function initializeDoc(data)
 {
-  var data = JSON.parse(runners);
   var wrap = document.createElement('div');
   wrap.setAttribute('id', 'wrap');
+
   var main = document.createElement('div');
   main.setAttribute('id', 'main');
+
   var container = document.createElement('div');
   container.setAttribute('class', 'container');
 
-  var runners = e.target.responseText;
   var runnerCount = document.createElement('div');
 
   runnerCount.setAttribute('id', 'runnerCount');
   runnerCount.innerHTML = '<h2>' + String(data.channels.length + ' runners currently streaming</h2>');
   document.body.appendChild(runnerCount);
 
-  return data;
+  main.appendChild(container);
+  wrap.appendChild(main);
+  document.body.appendChild(wrap);
 }
 
 /**
  * Blacklist of games.
  * Check this before displaying a runner
+ * @param game The name of the game
+ * @param name The name of the runner
+ *
+ * @private
  */
 function badGame(game, name) 
 {
-  // this is the SRL blacklist
   if (game == null) return true;
   if (game.search(/Audiosurf/i) > -1) { return true; }
   //if (game.search(/Borderlands/i) > -1) { return true; }
@@ -159,8 +152,9 @@ function badGame(game, name)
   // if (game.search(/Touhou/i) > -1) { return true; }
   if (game.search(/Warcraft/i) > -1) { return true; }
   if (game.search(/Worms/i) > -1) { return true; }
-  if (game.search(/Nail/i) > -1) { return true; } //hehe
-return false;
+  if (game.search(/Nail/i) > -1) { return true; } //hehe <-That's Cosmo's comment, not mine
+
+  return false;
 }
 
 // Runs the streamer loading as soon as the document's DOM is ready.

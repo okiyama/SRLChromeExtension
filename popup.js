@@ -56,7 +56,6 @@ function loadStreamerList(data)
       streamer.setAttribute('href', 'http://www.twitch.tv/' + String(channel.name)); //+ '/popout');
       streamer.setAttribute('target', '_blank');
 
-      //var text = document.createElement('div');
       var name = document.createElement('span');
       name.setAttribute('class', 'name');
       name.innerHTML = channel.display_name;
@@ -124,9 +123,7 @@ function badGame(game, name)
 {
   if (game == null) return true;
   if (game.search(/Audiosurf/i) > -1) { return true; }
-  //if (game.search(/Borderlands/i) > -1) { return true; }
   if (game.search(/beatmania/i) > -1) { return true; }
-  //if (game.search(/Call of Duty/i) > -1) { return true; }
   if (game.search(/Dance Dance Revolution/i) > -1) { return true; }
   if (game.search(/DayZ/i) > -1) { return true; }
   if (game.search(/Diablo/i) > -1) { return true; }
@@ -149,7 +146,6 @@ function badGame(game, name)
   if (game.search(/Team Fortress/i) > -1) { return true; }
   if (game.search(/Terraria/i) > -1) { return true; }
   if (game.search(/Total Annihilation/i) > -1) { return true; }
-  // if (game.search(/Touhou/i) > -1) { return true; }
   if (game.search(/Warcraft/i) > -1) { return true; }
   if (game.search(/Worms/i) > -1) { return true; }
   if (game.search(/Nail/i) > -1) { return true; } //hehe <-That's Cosmo's comment, not mine

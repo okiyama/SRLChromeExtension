@@ -7,7 +7,7 @@
 function requestStreamers() 
 {
   var req = new XMLHttpRequest();
-  req.open('GET', 'http://www.speedrunslive.com:81/test/team', true);
+  req.open('GET', 'http://api.speedrunslive.com:81/test/team', true);
   req.onload = loadRunners.bind(this);
   req.send(null);
 }

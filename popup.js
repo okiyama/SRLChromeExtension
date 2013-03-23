@@ -5,8 +5,6 @@
  * to Julian Jocque for the original code.
  */
 
-var tabID = -1;
-
 /**
  * Sends an XHR GET request to grab streamer info from SpeedRunsLive.com. The
  * XHR's 'onload' event is hooked up to the 'loadRunners' method.

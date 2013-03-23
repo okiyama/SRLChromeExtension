@@ -17,6 +17,7 @@ function openUrl(url)
   {
     chrome.tabs.create({ "url": url }, onTabCreate);
     chrome.tabs.onRemoved.addListener(onTabClose);
+    return;
   }
   else
   {
@@ -40,5 +41,5 @@ function onTabCreate(tab)
  */
 function onTabClose()
 {
-  tabId = -1;
+  tabID = -1;
 }

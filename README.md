@@ -26,5 +26,3 @@ The other parts of SRL as buttons at the top, like races and leaderboard.
 Mention that this is open source somewhere in the popup.  
 Credits or about section.  
 Figure out licensing.  
-Use the tabs feature of Chrome extensions so that we don't keep opening new tabs when we click streamers. 
-This will make it so we have one central tab for viewing.

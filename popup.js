@@ -1,10 +1,19 @@
 /**
+ * Speed Runs Live Stream Viewer main Javascript file for the popup.
+ * Loads the popup and populates it with streams.
+ * This code is free for anyone to use in any way, so long as credit is
+ * to Julian Jocque for the original code.
+ */
+
+var tabID = -1;
+
+/**
  * Sends an XHR GET request to grab streamer info from SpeedRunsLive.com. The
  * XHR's 'onload' event is hooked up to the 'loadRunners' method.
  *
  * @public
  */
-function requestStreamers() 
+function requestStreamers()
 {
   var req = new XMLHttpRequest();
   req.open('GET', 'http://api.speedrunslive.com:81/test/team', true);
@@ -20,7 +29,7 @@ function requestStreamers()
  * @param {ProgressEvent} e The XHR ProgressEvent.
  * @private
  */
-function loadRunners(e) 
+function loadRunners(e)
 {
   var runners = e.target.responseText;
   var data = JSON.parse(runners);
@@ -46,15 +55,25 @@ function loadStreamerList(data)
   var streamerList = document.createElement('div');
   streamerList.setAttribute('id', 'streamList');
 
-  for (var i = 0; i < data.channels.length; i++) 
+  for (var i = 0; i < data.channels.length; i++)
   {
     var channel = data.channels[i].channel;
     if (!badGame(channel.meta_game, channel.name))
     {
       var streamer = document.createElement('a');
       streamer.setAttribute('class', 'twitchstreamer');
-      streamer.setAttribute('href', 'http://www.twitch.tv/' + String(channel.name)); //+ '/popout');
-      streamer.setAttribute('target', '_blank');
+      streamer.setAttribute('href', '#');
+      streamer.setAttribute('streamLink', 'http://www.twitch.tv/' + String(channel.name));
+
+      //This is weird because it requires closure
+      streamer.onclick = function()
+      {
+        var currentStreamer = streamer;
+        return function()
+        {
+          chrome.extension.getBackgroundPage().openUrl(currentStreamer.getAttribute('streamLink')+'');
+        }
+      }();
 
       var name = document.createElement('span');
       name.setAttribute('class', 'name');
@@ -119,7 +138,7 @@ function initializeDoc(data)
  *
  * @private
  */
-function badGame(game, name) 
+function badGame(game, name)
 {
   if (game == null) return true;
   if (game.search(/Audiosurf/i) > -1) { return true; }
@@ -154,7 +173,7 @@ function badGame(game, name)
 }
 
 // Runs the streamer loading as soon as the document's DOM is ready.
-document.addEventListener('DOMContentLoaded', function () 
+document.addEventListener('DOMContentLoaded', function ()
 {
   requestStreamers();
 });

@@ -45,22 +45,16 @@ body {
   text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
   line-height: 15px;
   width: 630px;
+  overflow:visible;
 }
 .always_scrollbar {
-  overflow-y: scroll;
+  overflow-y: visible;
 }
 .container {
   width: 600px;
   margin: 0 auto;
   padding: 8px 0 15px 15px;
-  overflow: auto;
-}
-.container2 {
-  width: 100%;
-  min-width: 992px;
-  margin: 0 auto;
-  overflow: hidden;
-  padding-bottom: 16px;
+  overflow: visible;
 }
 header {
   background: url("images/texture_bar2.jpg") top center;

@@ -21,8 +21,9 @@ zip and load it.
 **To Do** (No particular order of priority)  
 
 Better icons are always good.  
-Options for if they should open the normal, popup or new twitch interface.  
+Button to open in fullscreen.  
 The other parts of SRL as buttons at the top, like races and leaderboard.  
 Mention that this is open source somewhere in the popup.  
 Credits or about section.  
 Figure out licensing.  
+Show what game the person is playing next to the name? Should be small and unobtrusive

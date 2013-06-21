@@ -517,10 +517,9 @@ th {
 }
 #gameName {
   display: none;
-  float: center;
-  margin-right: 5px;
+  margin-left: 20px;
   color: #bec7d2;
-  font-size: 65%;
+  font-size: 75%;
 }
 #streamList {
   margin-top: 15px;

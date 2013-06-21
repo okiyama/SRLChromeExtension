@@ -25,6 +25,4 @@ Button to open in fullscreen. Which requires local storage permission.
 The other parts of SRL as buttons at the top, like races and leaderboard.  
 Mention that this is open source somewhere in the popup.  
 Credits or about section. (which could mention the OSS aspect)  
-Figure out licensing.  
-Show what game the person is playing next to the name on hover? Maybe just show all the time but small.  
 Google analytics, which requires a new permission

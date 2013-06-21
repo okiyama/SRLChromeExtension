@@ -53,7 +53,6 @@ body {
 .container {
   width: 600px;
   margin: 0 auto;
-  padding: 8px 0 15px 15px;
   overflow: visible;
 }
 header {
@@ -509,7 +508,20 @@ th {
   border-style: solid;
   border-color: #0c2b6c #000000 #000000 #0b2863;
 }
-#runnerCount {
-  margin-left: 25px;
+.twitchstreamer .viewers {
+  float: right;
+  margin-right: 15px;
+}
+.twitchstreamer:hover #gameName {
+  display: inline;
+}
+#gameName {
+  display: none;
+  float: center;
+  margin-right: 5px;
+  color: #bec7d2;
+  font-size: 65%;
+}
+#streamList {
   margin-top: 15px;
 }

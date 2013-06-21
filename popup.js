@@ -1,8 +1,10 @@
 /**
  * Speed Runs Live Stream Viewer main Javascript file for the popup.
  * Loads the popup and populates it with streams.
- * This code is free for anyone to use in any way, so long as credit is
- * to Julian Jocque for the original code.
+ * 
+ * Licensing information can be found in LICENSE.txt.
+ * If you want to use this or want more information, you can always just email me
+ * at julianjocque (at) gmail.com
  */
 
 /**
@@ -72,10 +74,15 @@ function loadStreamerList(data)
           chrome.extension.getBackgroundPage().openUrl(currentStreamer.getAttribute('streamLink')+'');
         }
       }();
-
+      
+      var gameName = document.createElement('span');
+      gameName.setAttribute('id', 'gameName');
+      gameName.innerHTML = channel.meta_game;
+      
       var name = document.createElement('span');
       name.setAttribute('class', 'name');
       name.innerHTML = channel.display_name;
+      name.appendChild(gameName);
 
       var image = document.createElement('img');
       image.setAttribute('src', channel.image.size70);
@@ -85,10 +92,14 @@ function loadStreamerList(data)
       title.setAttribute('class', 'description');
       title.innerHTML = '<p>' + channel.title + '</p>';
 
+      var viewers = document.createElement('span');
+      viewers.setAttribute('class', 'viewers');
+      viewers.innerHTML = channel.current_viewers + ' viewers' + '<br />';
+
       var streamerInfo = document.createElement('div');
       streamerInfo.setAttribute('class', 'streamerinfo');
       streamerInfo.appendChild(name);
-      streamerInfo.innerHTML += channel.current_viewers + ' viewers' + '<br />';
+      streamerInfo.appendChild(viewers);
       streamerInfo.appendChild(title);
 
       streamer.appendChild(image);
@@ -116,12 +127,6 @@ function initializeDoc(data)
 
   var container = document.createElement('div');
   container.setAttribute('class', 'container');
-
-  var runnerCount = document.createElement('div');
-
-  runnerCount.setAttribute('id', 'runnerCount');
-  runnerCount.innerHTML = '<h2>' + String(data.channels.length + ' runners currently streaming</h2>');
-  document.body.appendChild(runnerCount);
 
   main.appendChild(container);
   wrap.appendChild(main);

@@ -44,14 +44,14 @@ body {
   height: 100%;
   text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
   line-height: 15px;
-  width: 630px;
+  width: 615px;
   overflow:visible;
 }
 .always_scrollbar {
   overflow-y: visible;
 }
 .container {
-  width: 600px;
+  width: 595px;
   margin: 0 auto;
   overflow: visible;
 }
@@ -510,17 +510,19 @@ th {
 }
 .twitchstreamer .viewers {
   float: right;
-  margin-right: 15px;
+  margin-right: 10px;
 }
 #streamList {
   margin-top: 10px;
+  margin-left: 5px;
 }
 #fullscreen {
   display: inline-block;
   border: solid;
-  border-color: #fa5050;
+  border-color: #ef9900;
   font-size:125%;
   margin-top:10px;
+  margin-left: 5px;
   padding-left:1px;
 }
 #fsButton {

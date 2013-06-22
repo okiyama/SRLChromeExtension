@@ -512,15 +512,18 @@ th {
   float: right;
   margin-right: 15px;
 }
-.twitchstreamer:hover #gameName {
-  display: inline;
-}
-#gameName {
-  display: none;
-  margin-left: 20px;
-  color: #bec7d2;
-  font-size: 75%;
-}
 #streamList {
-  margin-top: 15px;
+  margin-top: 10px;
 }
+#fullscreen {
+  display: inline-block;
+  border: solid;
+  border-color: #fa5050;
+  font-size:125%;
+  margin-top:10px;
+  padding-left:1px;
+}
+#fsButton {
+  vertical-align: text-top;
+ }
+

@@ -66,23 +66,24 @@ function loadStreamerList(data)
       streamer.setAttribute('streamLink', 'http://www.twitch.tv/' + String(channel.name));
 
       //This is weird because it requires closure
+      //This opens up the link. It's messy to put it right here, but messier to pull it out.
       streamer.onclick = function()
       {
         var currentStreamer = streamer;
         return function()
         {
-          chrome.extension.getBackgroundPage().openUrl(currentStreamer.getAttribute('streamLink')+'');
+		  var fullscreen = '';
+		  if (document.getElementById('fsButton').checked)
+		  {
+			  fullscreen = '/popout/';
+		  }
+          chrome.extension.getBackgroundPage().openUrl(currentStreamer.getAttribute('streamLink') + fullscreen);
         }
       }();
-      
-      var gameName = document.createElement('span');
-      gameName.setAttribute('id', 'gameName');
-      gameName.innerHTML = channel.meta_game;
       
       var name = document.createElement('span');
       name.setAttribute('class', 'name');
       name.innerHTML = channel.display_name;
-      name.appendChild(gameName);
 
       var image = document.createElement('img');
       image.setAttribute('src', channel.image.size70);
@@ -128,9 +129,45 @@ function initializeDoc(data)
   var container = document.createElement('div');
   container.setAttribute('class', 'container');
 
+  var fullscreen = document.createElement('label');
+  fullscreen.setAttribute('id', 'fullscreen');
+  fullscreen.innerHTML = 'Fullscreen';
+  fullscreen.onclick = function() { storeFS(); }
+  
+  var fsButton = document.createElement('input')
+  fsButton.setAttribute('id', 'fsButton');
+  fsButton.setAttribute('type', 'checkbox');
+  
+  
+  chrome.storage.sync.get('fullscreen', function(data) 
+  {
+	fsButton.checked = data['fullscreen'];
+  });
+  
+  fullscreen.appendChild(fsButton);
+  container.appendChild(fullscreen);
+
   main.appendChild(container);
   wrap.appendChild(main);
   document.body.appendChild(wrap);
+}
+
+/**
+ * Stores if the Fullscreen Button is checked or not to sync storage. 
+ * 
+ * @private
+ */
+function storeFS()
+{
+  var fullscreen;
+  if (document.getElementById('fsButton').checked)
+  {
+	  chrome.storage.sync.set({'fullscreen': true});
+  }
+  else
+  {
+	  chrome.storage.sync.set({'fullscreen': false});
+  }
 }
 
 /**

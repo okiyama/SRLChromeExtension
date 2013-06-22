@@ -513,15 +513,12 @@ th {
   margin-right: 10px;
 }
 #streamList {
-  margin-top: 10px;
   margin-left: 5px;
 }
 #fullscreen {
   display: inline-block;
-  border: solid;
-  border-color: #ef9900;
   font-size:125%;
-  margin-top:10px;
+  margin-top:5px;
   margin-left: 5px;
   padding-left:1px;
 }

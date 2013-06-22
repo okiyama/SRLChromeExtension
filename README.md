@@ -20,10 +20,6 @@ zip and load it.
 
 **To Do** (No particular order of priority)  
 
-Better icons are always good.  
-Button to open in fullscreen. Which requires local storage permission.  
 The other parts of SRL as buttons at the top, like races and leaderboard.  
 Mention that this is open source somewhere in the popup.  
 Credits or about section. (which could mention the OSS aspect)  
-Google analytics, which requires a new permission  
-Remove the tabbing stuff, users said it is annoying, it only works sometimes, it isn't very obvious. Just sorta bad. 

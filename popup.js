@@ -72,12 +72,17 @@ function loadStreamerList(data)
         var currentStreamer = streamer;
         return function()
         {
-		  var fullscreen = '';
-		  if (document.getElementById('fsButton').checked)
-		  {
-			  fullscreen = '/popout/';
-		  }
-          chrome.extension.getBackgroundPage().openUrl(currentStreamer.getAttribute('streamLink') + fullscreen);
+  		  var fullscreen = '';
+  		  if (document.getElementById('fsButton').checked)
+  		  {
+          _gaq.push(['_trackEvent', 'Fullscreen Link', 'used']);
+  			  fullscreen = '/popout/';
+  		  }
+        else
+        {
+          _gaq.push(['_trackEvent', 'Normal link', 'used']);
+        }
+          chrome.tabs.create({ "url": currentStreamer.getAttribute('streamLink') + fullscreen });
         }
       }();
       
@@ -163,10 +168,12 @@ function storeFS()
   if (document.getElementById('fsButton').checked)
   {
 	  chrome.storage.sync.set({'fullscreen': true});
+    _gaq.push(['_trackEvent', 'Fullscreen Button', 'Activated']);
   }
   else
   {
 	  chrome.storage.sync.set({'fullscreen': false});
+    _gaq.push(['_trackEvent', 'Fullscreen Button', 'Deactivate']);
   }
 }
 
@@ -212,7 +219,18 @@ function badGame(game, name)
   return false;
 }
 
-// Runs the streamer loading as soon as the document's DOM is ready.
+// Google analytics tracking code
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'YOURACCOUNTHERE']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = 'https://ssl.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+// Loads stream list as soon as the document's DOM is ready.
 document.addEventListener('DOMContentLoaded', function ()
 {
   requestStreamers();

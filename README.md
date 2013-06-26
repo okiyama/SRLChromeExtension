@@ -23,3 +23,5 @@ zip and load it.
 The other parts of SRL as buttons at the top, like races and leaderboard.  
 Mention that this is open source somewhere in the popup.  
 Credits or about section. (which could mention the OSS aspect)  
+Country flags next to name  
+Links within boxes clickable  

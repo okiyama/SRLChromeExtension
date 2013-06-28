@@ -25,3 +25,4 @@ Mention that this is open source somewhere in the popup.
 Credits or about section. (which could mention the OSS aspect)  
 Country flags next to name  
 Links within boxes clickable  
+Add scroll bar, make it pretty

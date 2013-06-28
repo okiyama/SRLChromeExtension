@@ -31,3 +31,4 @@ Favorites button with desktop notifications, lots of work though
 Interface could be thinner, probably by about 100 pixels. Test and see what long names + descriptions look like.  
 Setting button, though it might be a bit much  
 Clean out CSS for other browsers  
+Fix tabbing, either to be tabs or four spaces instead of two

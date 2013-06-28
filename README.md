@@ -27,3 +27,6 @@ Country flags next to name
 Links within boxes clickable  
 Add scroll bar, make it pretty  
 Donation link for paying for the SRL servers. Make sure to have how much money it has  
+Favorites button with desktop notifications, lots of work though  
+Interface could be thinner, probably by about 100 pixels. Test and see what long names + descriptions look like.  
+Setting button, though it might be a bit much  

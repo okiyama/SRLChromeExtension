@@ -221,7 +221,7 @@ function badGame(game, name)
 
 // Google analytics tracking code
 var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'YOURACCOUNTHERE']);
+_gaq.push(['_setAccount', 'UA-41948814-1']);
 _gaq.push(['_trackPageview']);
 
 (function() {

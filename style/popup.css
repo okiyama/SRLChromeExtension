@@ -44,14 +44,15 @@ body {
   height: 100%;
   text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
   line-height: 15px;
-  width: 615px;
+  width: 500px;
+  height:620px;
   overflow:visible;
 }
 .always_scrollbar {
   overflow-y: visible;
 }
 .container {
-  width: 595px;
+  width: 100%;
   margin: 0 auto;
   overflow: visible;
 }
@@ -85,7 +86,7 @@ footer {
   min-height: 100%;
 }
 #main {
-  padding-bottom: 28px;
+  padding-bottom: 3%;
 }
 #logo {
   background: url("images/logo350.png") no-repeat;
@@ -149,7 +150,7 @@ nav ul li a {
   -o-user-select: none;
   user-select: none;
   cursor: pointer;
-  width: 105px;
+  width: 85px;
   padding: 4px 0;
   margin: 0 16px 0 0;
 }
@@ -410,7 +411,7 @@ th {
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-  width: 600px;
+  width: 100%;
   min-height: 65px;
   height: 90px;
   padding: 0;
@@ -513,16 +514,25 @@ th {
   margin-right: 10px;
 }
 #streamList {
-  margin-left: 5px;
+  width: 98%;
+  margin-left:1.5%;
 }
 #fullscreen {
   display: inline-block;
   font-size:125%;
   margin-top:5px;
-  margin-left: 5px;
+  margin-left: 2%;
   padding-left:1px;
 }
 #fsButton {
   vertical-align: text-top;
  }
-
+::-webkit-scrollbar {
+  width:10px;
+}
+::-webkit-scrollbar-thumb:vertical {
+  background-color: #979797;
+  height: 30px;
+  -webkit-border-radius: 10px;
+  margin-right:5px;
+}

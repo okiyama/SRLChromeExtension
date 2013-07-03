@@ -181,15 +181,16 @@ function storeFS()
  * Blacklist of games.
  * Check this before displaying a runner
  * @param game The name of the game
- * @param name The name of the runner
  *
  * @private
  */
-function badGame(game, name)
-{
-  if (game == null) return true;
+function badGame ( game ) {
+  if (game == null) return false;
+  if (game.search(/Age of Empires/i) > -1) { return true; }
   if (game.search(/Audiosurf/i) > -1) { return true; }
+  //if (game.search(/Borderlands/i) > -1) { return true; }
   if (game.search(/beatmania/i) > -1) { return true; }
+  //if (game.search(/Call of Duty/i) > -1) { return true; }
   if (game.search(/Dance Dance Revolution/i) > -1) { return true; }
   if (game.search(/DayZ/i) > -1) { return true; }
   if (game.search(/Diablo/i) > -1) { return true; }
@@ -198,25 +199,24 @@ function badGame(game, name)
   if (game.search(/Guitar Hero/i) > -1) { return true; }
   if (game.search(/Heroes of Newerth/i) > -1) { return true; }
   if (game.search(/iDOLM@STER/i) > -1) { return true; }
-  if (game.search(/M@STER/i) > -1) { return true; }
   if (game.search(/Idolmaster/i) > -1) { return true; }
   if (game.search(/League of Legends/i) > -1) { return true; }
   if (game.search(/Mario Party/i) > -1) { return true; }
   if (game.search(/Minecraft/i) > -1) { return true; }
   if (game.search(/Osu!/i) > -1) { return true; }
+  if (game.search(/Ragnarok Online/i) > -1) { return true; }
   if (game.search(/Rock Band/i) > -1) { return true; }
   if (game.search(/RuneScape/i) > -1) { return true; }
-  if (game.search(/Starcraft/i) > -1 && name != "Raelcun") { return true; }
+  if (game.search(/Starcraft/i) > -1) { return true; }
   if (game.search(/StepMania/i) > -1) { return true; }
   if (game.search(/Super Smash Bros/i) > -1) { return true; }
   if (game.search(/Team Fortress/i) > -1) { return true; }
   if (game.search(/Terraria/i) > -1) { return true; }
   if (game.search(/Total Annihilation/i) > -1) { return true; }
+  // if (game.search(/Touhou/i) > -1) { return true; }
   if (game.search(/Warcraft/i) > -1) { return true; }
   if (game.search(/Worms/i) > -1) { return true; }
-  if (game.search(/Nail/i) > -1) { return true; } //hehe <-That's Cosmo's comment, not mine
-
-  return false;
+return false;
 }
 
 // Google analytics tracking code

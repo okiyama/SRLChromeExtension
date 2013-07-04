@@ -60,14 +60,12 @@ header {
   background: url("images/texture_bar2.jpg") top center;
   border-bottom: 1px #424242 dotted;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
-  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
   padding-top: 8px;
 }
 footer {
   background: url("images/texture_bar_footer2.jpg") top center;
   border-top: 1px #424242 dotted;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
-  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
   color: #808080;
   font-size: 85%;
   line-height: 85%;
@@ -118,15 +116,6 @@ nav ul li a {
   background-image: url("/images/grunge_button.png"), -webkit-linear-gradient(top, #424242, #303030);
   /* Chrome 10+, Saf5.1+, iOS 5+ */
 
-  background-image: url("/images/grunge_button.png"), -moz-linear-gradient(top, #424242, #303030);
-  /* FF3.6 */
-
-  background-image: url("/images/grunge_button.png"), -ms-linear-gradient(top, #424242, #303030);
-  /* IE10 */
-
-  background-image: url("/images/grunge_button.png"), -o-linear-gradient(top, #424242, #303030);
-  /* Opera 11.10+ */
-
   background-image: url("/images/grunge_button.png"), linear-gradient(to bottom, #424242, #303030);
   border-width: 1px 0px 1px 1px;
   border-style: solid;
@@ -136,11 +125,9 @@ nav ul li a {
   font-weight: 700;
   color: #bec7d2;
   margin: 0;
-  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
-  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
   -webkit-user-select: none;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
   cursor: pointer;
   width: 85px;
   padding: 4px 0;
@@ -153,15 +140,6 @@ nav ul li a:hover {
 
   background-image: url("/images/grunge_button.png"), -webkit-linear-gradient(top, #3c70df, #235cd4);
   /* Chrome 10+, Saf5.1+, iOS 5+ */
-
-  background-image: url("/images/grunge_button.png"), -moz-linear-gradient(top, #3c70df, #235cd4);
-  /* FF3.6 */
-
-  background-image: url("/images/grunge_button.png"), -ms-linear-gradient(top, #3c70df, #235cd4);
-  /* IE10 */
-
-  background-image: url("/images/grunge_button.png"), -o-linear-gradient(top, #3c70df, #235cd4);
-  /* Opera 11.10+ */
 
   background-image: url("/images/grunge_button.png"), linear-gradient(to bottom, #3c70df, #235cd4);
   border-width: 1px 0px 1px 1px;
@@ -177,18 +155,8 @@ nav ul li a:active {
   background-image: url("/images/grunge_button.png"), -webkit-linear-gradient(top, #1448b3, #103b93);
   /* Chrome 10+, Saf5.1+, iOS 5+ */
 
-  background-image: url("/images/grunge_button.png"), -moz-linear-gradient(top, #1448b3, #103b93);
-  /* FF3.6 */
-
-  background-image: url("/images/grunge_button.png"), -ms-linear-gradient(top, #1448b3, #103b93);
-  /* IE10 */
-
-  background-image: url("/images/grunge_button.png"), -o-linear-gradient(top, #1448b3, #103b93);
-  /* Opera 11.10+ */
-
   background-image: url("/images/grunge_button.png"), linear-gradient(to bottom, #1448b3, #103b93);
   box-shadow: 0 0 0 rgba(0, 0, 0, 0.6);
-  -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0.6);
   border-width: 1px 0px 1px 1px;
   border-style: solid;
   border-color: #164fc5 #071a40 #071a40 #154cbc;
@@ -288,50 +256,39 @@ th {
 }
 .rounded_top {
   border-radius: 5px 5px 0 0;
-  -webkit-border-radius: 5px 5px 0 0;
 }
 .rounded_bottom {
   border-radius: 0 0 5px 5px;
-  -webkit-border-radius: 0 0 5px 5px;
 }
 .rounded_topleft {
   border-radius: 5px 0 0 0;
-  -webkit-border-radius: 5px 0 0 0;
 }
 .rounded_topright {
   border-radius: 0 5px 0 0;
-  -webkit-border-radius: 0 5px 0 0;
 }
 .rounded_bottomleft {
   border-radius: 0 0 0 5px;
-  -webkit-border-radius: 0 0 0 5px;
 }
 .rounded_bottomright {
   border-radius: 0 0 5px 0;
-  -webkit-border-radius: 0 0 5px 0;
 }
 .textshadow {
   text-shadow: 1px 1px 3px #111111;
 }
 .boxshadow {
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
-  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
 }
 .insetboxshadow {
   box-shadow: inset 0px 0px 50px rgba(0, 0, 0, 0.6);
-  -webkit-box-shadow: inset 0px 0px 50px rgba(0, 0, 0, 0.6);
 }
 .insetboxshadow2 {
   box-shadow: inset 0px 0px 50px rgba(255, 255, 255, 0.3);
-  -webkit-box-shadow: inset 0px 0px 50px rgba(255, 255, 255, 0.3);
 }
 .noboxshadow {
   box-shadow: 0 0 0 rgba(0, 0, 0, 0.6);
-  -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0.6);
 }
 .liteboxshadow {
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.45);
-  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.45);
 }
 .italic {
   font-style: italic;
@@ -353,7 +310,6 @@ th {
 
   display: block;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
-  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
   background-color: #424242;
   background-image: url("/images/grunge_button.png"), -webkit-gradient(linear, left top, left bottom, from(#424242), to(#303030));
   /* Saf4+, Chrome */
@@ -366,7 +322,6 @@ th {
   border-style: solid;
   border-color: #4c4c4c #000000 #000000 #474747;
   border-radius: 5px;
-  -webkit-border-radius: 5px;
   width: 100%;
   min-height: 65px;
   height: 90px;
@@ -375,10 +330,8 @@ th {
 }
 .twitchstreamer .ava {
   border-radius: 10px;
-  -webkit-border-radius: 10px;
   border: solid 1px #000000;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
-  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
   float: left;
   margin: 8px;
   width: 70px;
@@ -432,7 +385,7 @@ th {
   /* Chrome 10+, Saf5.1+, iOS 5+ */
 
   background-image: url("/images/grunge_button.png"), linear-gradient(to bottom, #0a245a, #061739);
-  -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.6);
   border-width: 1px 0px 1px 1px;
   border-style: solid;
   border-color: #0c2b6c #000000 #000000 #0b2863;

@@ -41,6 +41,7 @@ function loadRunners(e)
   var container = document.getElementsByClassName('container');
 
   container[0].appendChild(streamerList);
+  $('a').click(openLink);
 }
 
 /**
@@ -64,27 +65,6 @@ function loadStreamerList(data)
       streamer.setAttribute('class', 'twitchstreamer');
       streamer.setAttribute('href', '#');
       streamer.setAttribute('streamLink', 'http://www.twitch.tv/' + String(channel.name));
-
-      //This is weird because it requires closure
-      //This opens up the link. It's messy to put it right here, but messier to pull it out.
-      streamer.onclick = function()
-      {
-        var currentStreamer = streamer;
-        return function()
-        {
-  		  var fullscreen = '';
-  		  if (document.getElementById('fsButton').checked)
-  		  {
-          _gaq.push(['_trackEvent', 'Fullscreen Link', 'used']);
-  			  fullscreen = '/popout/';
-  		  }
-        else
-        {
-          _gaq.push(['_trackEvent', 'Normal link', 'used']);
-        }
-          chrome.tabs.create({ "url": currentStreamer.getAttribute('streamLink') + fullscreen });
-        }
-      }();
       
       var name = document.createElement('span');
       name.setAttribute('class', 'name');
@@ -96,7 +76,7 @@ function loadStreamerList(data)
 
       var title = document.createElement('span');
       title.setAttribute('class', 'description');
-      title.innerHTML = '<p>' + channel.title + '</p>';
+      title.innerHTML = addLinksToText('<p>' + channel.title + '</p>');
 
       var viewers = document.createElement('span');
       viewers.setAttribute('class', 'viewers');
@@ -146,7 +126,7 @@ function initializeDoc(data)
   
   chrome.storage.sync.get('fullscreen', function(data) 
   {
-	fsButton.checked = data['fullscreen'];
+	  fsButton.checked = data['fullscreen'];
   });
   
   fullscreen.appendChild(fsButton);
@@ -184,7 +164,7 @@ function storeFS()
  *
  * @private
  */
-function badGame ( game ) {
+function badGame (game) {
   if (game == null) return false;
   if (game.search(/Age of Empires/i) > -1) { return true; }
   if (game.search(/Audiosurf/i) > -1) { return true; }
@@ -218,6 +198,61 @@ function badGame ( game ) {
   if (game.search(/Worms/i) > -1) { return true; }
 return false;
 }
+
+/**
+ * Takes text and returns the text with a href links added.
+ * @param text The text to add links to
+ *
+ * @public
+ */
+function addLinksToText(text) {
+    var exp = /(https?:\/\/)?(([A-Za-z0-9#]+[.])+[A-Za-z]{2,3}([\/][A-Za-z0-9#]+)*([.][A-Za-z]{2,4})?)/ig;
+    return text.replace(exp,"<a href='http://$2'>$1$2</a>"); 
+}
+
+/**
+ * Opens a link to a new tab.
+ * Takes into account if we are trying to open a stream or a link within the description of a stream.
+ * This is called when <a> elements are clicked.
+ * @param e The event that was clicked
+ *
+ * @private
+ */
+function openLink(e)
+{
+    e.stopPropagation();
+    if (this.className == "twitchstreamer")
+    {
+      openTwitchLink(e);
+    }
+    else
+    {
+      chrome.tabs.create({ "url": this.href});
+    }
+}
+
+/**
+ * Helper function made specifically to open a twitch streamer.
+ * Takes into account the fullscreen button.
+ * @param e The event that we get stream information from
+ *
+ */
+ function openTwitchLink(e)
+ {
+  var fullscreen = '';
+  var streamBaseLink = e.currentTarget.attributes[2].nodeValue; //Attributes[2] is streamLink. 
+  //This will have to change if the attributes of twitchStreamer change
+  if (document.getElementById('fsButton').checked)
+  {
+    _gaq.push(['_trackEvent', 'Fullscreen Link', 'used']);
+    fullscreen = '/popout/';
+  }
+  else
+  {
+    _gaq.push(['_trackEvent', 'Normal link', 'used']);
+  }
+    chrome.tabs.create({ "url": streamBaseLink + fullscreen });
+ }
 
 // Google analytics tracking code
 var _gaq = _gaq || [];

@@ -1,6 +1,13 @@
 Changelog
 ==================
 
+1.3.0
+
+* Made thinner
+* Added stylized scrollbar
+* Cleaned up code
+* Can now click links inside of stream decriptions
+
 1.2.0  
 
 * Fixed horizontal scrolling  

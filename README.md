@@ -27,4 +27,3 @@ Country flags next to name
 Donation link for paying for the SRL servers. Make sure to have how much money it has  
 Favorites button with desktop notifications, lots of work though   
 Setting button, though it might be a bit much  
-Fix tabbing, either to be tabs or four spaces instead of two

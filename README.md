@@ -24,5 +24,6 @@ The other parts of SRL as buttons at the top, like races and leaderboard.
 Mention that this is open source somewhere in the popup.  
 Credits or about section. (which could mention the OSS aspect)  
 Country flags next to name  
+Clean out CSS thoroughly. Make sure to remove all redundancies, there are a lot and it makes things much harder to read and use.  
 Favorites button with desktop notifications, lots of work though   
 Setting button, though it might be a bit much  

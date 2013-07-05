@@ -1,1 +1,1 @@
-var apiUrl = 'http://api.speedrunslive.com'
+var apiUrl = 'http://api.speedrunslive.com';

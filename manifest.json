@@ -2,7 +2,7 @@
   "manifest_version": 2,
 
   "name": "SpeedRunsLive Stream Viewer",
-  "description": "For easily viewing the streams on SpeedRunsLive.",
+  "description": "For easily viewing the streams on SpeedRunsLive.com",
   "version": "1.3.0",
 
   "browser_action": {

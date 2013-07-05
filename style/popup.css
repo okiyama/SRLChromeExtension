@@ -403,17 +403,50 @@ th {
 #streamList {
   width: 98%;
   margin-left:1.5%;
+  margin-top: 2%;
 }
 #fullscreen {
   display: inline-block;
   font-size:125%;
-  margin-top:5px;
+  margin-top:2%;
   margin-left: 2%;
   padding-left:1px;
 }
 #fsButton {
   vertical-align: text-top;
- }
+}
+#donation_server {
+  font-size: 75%;
+  float: right;
+  margin-right: 1%;
+  margin-top:1px;
+  text-align: center;
+}
+#donation_holder {
+  width: 100%;
+  height: 3px;
+  position: relative;
+  background-color: #808080;
+  padding-bottom: 2px;
+  background-image: url("/images/grunge_button.png"), linear-gradient(to bottom, #424242, #303030);
+  border-width: 1px 0px 1px 1px;
+  border-style: solid;
+  border-color: #4c4c4c #000000 #000000 #474747;
+  border-radius: 3px;
+}
+#donation_holder > span {
+  display: block;
+  height: 100%;
+  border-radius: 10px;
+  background-color: #f7e279;
+  position: relative;
+  overflow: hidden;
+  background-image: url("/images/grunge_button.png"), linear-gradient(to bottom, #f7e279, #f5db57);
+  border-width: 1px 0px 1px 1px;
+  border-style: solid;
+  border-color: #f8e68c #bc9f0b #bc9f0b #f8e483;
+  border-radius: 4px;
+}
 ::-webkit-scrollbar {
   width:10px;
 }

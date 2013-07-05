@@ -7,6 +7,7 @@ Changelog
 * Added stylized scrollbar
 * Cleaned up code
 * Can now click links inside of stream decriptions
+* Added donation link for SRL Servers. This does not go to me, it goes to supporting SpeedRunsLive.com
 
 1.2.0  
 

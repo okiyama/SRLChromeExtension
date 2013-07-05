@@ -16,7 +16,7 @@
 function requestStreamers()
 {
   var req = new XMLHttpRequest();
-  req.open('GET', 'http://api.speedrunslive.com:81/test/team', true);
+  req.open('GET', apiUrl + '/test/team', true);
   req.onload = loadRunners.bind(this);
   req.send(null);
 }
@@ -123,18 +123,25 @@ function initializeDoc(data)
   fsButton.setAttribute('id', 'fsButton');
   fsButton.setAttribute('type', 'checkbox');
   
-  
   chrome.storage.sync.get('fullscreen', function(data) 
   {
 	  fsButton.checked = data['fullscreen'];
   });
   
+  var donate = document.createElement('a');
+  donate.setAttribute('id', 'donation_server');
+  donate.setAttribute('href', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VGW56QDZNVHTA');
+  donate.setAttribute('title', 'Donations for SRL. Does not go to extension author.');
+
   fullscreen.appendChild(fsButton);
   container.appendChild(fullscreen);
+  container.appendChild(donate);
 
   main.appendChild(container);
   wrap.appendChild(main);
   document.body.appendChild(wrap);
+
+  renderDonate();
 }
 
 /**
@@ -155,6 +162,69 @@ function storeFS()
 	  chrome.storage.sync.set({'fullscreen': false});
     _gaq.push(['_trackEvent', 'Fullscreen Button', 'Deactivate']);
   }
+}
+
+/**
+ * Renders the donation info onto the element which was already appended.
+ *
+ * @private
+ */
+function renderDonate()
+{
+  $.ajax(
+  {
+    dataType: 'json',
+    async: false,
+    type : "GET",
+    url : apiUrl + '/test',
+    success : function(data) { addDonationInfo(data); }
+    });
+}
+
+/**
+ * Given donation data, adds it to the donation element. Helper for renderDonate.
+ * @param data The donation data, as an array
+ * @return The donate element
+ *
+ * @private
+ */
+function addDonationInfo(data)
+{
+  var container = document.getElementById('donation_server');
+
+  var monthNames = [ "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December" ]; //Well, that's annoying.
+  var time = new Date();
+  var topLine = document.createElement('span');
+  topLine.innerHTML = 'SRL server costs - donations for ' + monthNames[time.getMonth()] + ' ' + time.getFullYear();
+
+  var donation_holder = document.createElement('div');
+  donation_holder.setAttribute('id', 'donation_holder');
+  var donation_bar = document.createElement('span');
+  donation_bar.setAttribute('id', 'donation_bar');
+  donation_bar.setAttribute('style', 'width: ' + data.percent + '%;')
+
+  donation_holder.appendChild(donation_bar);
+
+  var amount = document.createElement('span');
+  amount.setAttribute('id', 'amount');
+  var balance = document.createElement('span');
+  balance.setAttribute('class', 'gold');
+  balance.setAttribute('id', 'd-balance');
+  balance.innerHTML = '$' + data.balance;
+  var target = document.createElement('span');
+  target.setAttribute('class', 'gold');
+  target.setAttribute('id', 'd-target');
+  target.innerHTML = '$' + data.target;
+
+  amount.innerHTML = "raised ";
+  amount.appendChild(balance);
+  amount.innerHTML += " out of ";
+  amount.appendChild(target);
+
+  container.appendChild(topLine);
+  container.appendChild(donation_holder);
+  container.appendChild(amount);
 }
 
 /**

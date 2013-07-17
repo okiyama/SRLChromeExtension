@@ -276,7 +276,7 @@ return false;
  * @public
  */
 function addLinksToText(text) {
-    var exp = /(https?:\/\/)?(([A-Za-z0-9#]+[.])+[A-Za-z]{2,3}([\/][A-Za-z0-9#]+)*([.][A-Za-z]{2,4})?)/ig;
+    var exp = /(https?:\/\/)?(([A-Za-z0-9#]+[.])+[A-Za-z]{2,3}([\/][A-Za-z0-9#=\?\-]+)*([.][A-Za-z]{2,4})?)/ig;
     return text.replace(exp,"<a href='http://$2'>$1$2</a>"); 
 }
 

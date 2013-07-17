@@ -1,6 +1,11 @@
 Changelog
 ==================
 
+1.3.1
+
+* Bug fix for links. Made the replacement more robust. Might need further tweaking.
+* Removed a ton of unneeded CSS and some unneeded images.
+
 1.3.0
 
 * Made thinner

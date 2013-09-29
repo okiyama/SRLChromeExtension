@@ -1,6 +1,9 @@
 Changelog
 ==================
 
+1.4.0
+ * Changed the default behavior of opening a link to open on SRL instead of Twitch. Opening in fullscreen is uneffected.
+
 1.3.1
 
 * Bug fix for links. Made the replacement more robust. Might need further tweaking.

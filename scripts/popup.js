@@ -64,7 +64,8 @@ function loadStreamerList(data)
       var streamer = document.createElement('a');
       streamer.setAttribute('class', 'twitchstreamer');
       streamer.setAttribute('href', '#');
-      streamer.setAttribute('streamLink', 'http://www.twitch.tv/' + String(channel.name));
+      streamer.setAttribute('streamLink', 'http://speedrunslive.com/#!/' + String(channel.name));
+      streamer.setAttribute('streamerName', String(channel.name));
       
       var name = document.createElement('span');
       name.setAttribute('class', 'name');
@@ -238,9 +239,7 @@ function badGame (game) {
   if (game == null) return false;
   if (game.search(/Age of Empires/i) > -1) { return true; }
   if (game.search(/Audiosurf/i) > -1) { return true; }
-  //if (game.search(/Borderlands/i) > -1) { return true; }
   if (game.search(/beatmania/i) > -1) { return true; }
-  //if (game.search(/Call of Duty/i) > -1) { return true; }
   if (game.search(/Dance Dance Revolution/i) > -1) { return true; }
   if (game.search(/DayZ/i) > -1) { return true; }
   if (game.search(/Diablo/i) > -1) { return true; }
@@ -263,7 +262,6 @@ function badGame (game) {
   if (game.search(/Team Fortress/i) > -1) { return true; }
   if (game.search(/Terraria/i) > -1) { return true; }
   if (game.search(/Total Annihilation/i) > -1) { return true; }
-  // if (game.search(/Touhou/i) > -1) { return true; }
   if (game.search(/Warcraft/i) > -1) { return true; }
   if (game.search(/Worms/i) > -1) { return true; }
 return false;
@@ -309,24 +307,22 @@ function openLink(e)
  */
  function openTwitchLink(e)
  {
-  var fullscreen = '';
-  var streamBaseLink = e.currentTarget.attributes[2].nodeValue; //Attributes[2] is streamLink. 
-  //This will have to change if the attributes of twitchStreamer change
+  var streamerName = e.currentTarget.attributes['streamerName'].nodeValue;
   if (document.getElementById('fsButton').checked)
   {
     _gaq.push(['_trackEvent', 'Fullscreen Link', 'used']);
-    fullscreen = '/popout/';
+    chrome.tabs.create({ "url": 'http://www.twitch.tv/' + streamerName + "/popout/" });
   }
   else
   {
     _gaq.push(['_trackEvent', 'Normal link', 'used']);
+    chrome.tabs.create({ "url": 'http://speedrunslive.com/#!/' + streamerName });
   }
-    chrome.tabs.create({ "url": streamBaseLink + fullscreen });
  }
 
 // Google analytics tracking code
 var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-41948814-1']);
+_gaq.push(['_setAccount', analyticsID]);
 _gaq.push(['_trackPageview']);
 
 (function() {

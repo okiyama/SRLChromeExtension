@@ -22,8 +22,8 @@ zip and load it.
 
 The other parts of SRL as buttons at the top, like races and leaderboard.  
 Mention that this is open source somewhere in the popup.  
-Credits or about section. (which could mention the OSS aspect) could also include a "time spent watching speed runs" for fun.
-Shouldn't be too much overhead.  
+Credits or about section. (which could mention the OSS aspect)   
+Statistics section including stuff like time spent watching speedruns  
 Country flags next to name  
 Favorites button with desktop notifications, lots of work though   
 Setting button, though it might be a bit much  

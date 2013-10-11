@@ -25,3 +25,4 @@ Country flags next to name
 Favorites button with desktop notifications, lots of work though  
 Settings page  
 About page  
+

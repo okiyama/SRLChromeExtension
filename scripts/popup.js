@@ -64,8 +64,7 @@ function loadStreamerList(data)
       var streamer = document.createElement('a');
       streamer.setAttribute('class', 'twitchstreamer');
       streamer.setAttribute('href', '#');
-      streamer.setAttribute('streamLink', 'http://speedrunslive.com/#!/' + String(channel.name));
-      streamer.setAttribute('streamerName', String(channel.name));
+      streamer.setAttribute('streamLink', 'http://www.twitch.tv/' + String(channel.name));
       
       var name = document.createElement('span');
       name.setAttribute('class', 'name');
@@ -307,17 +306,18 @@ function openLink(e)
  */
  function openTwitchLink(e)
  {
-  var streamerName = e.currentTarget.attributes['streamerName'].nodeValue;
+  var fullscreen = '';
+  var streamBaseLink = e.currentTarget.attributes['streamLink'].nodeValue;
   if (document.getElementById('fsButton').checked)
   {
     _gaq.push(['_trackEvent', 'Fullscreen Link', 'used']);
-    chrome.tabs.create({ "url": 'http://www.twitch.tv/' + streamerName + "/popout/" });
+    fullscreen = '/popout/';
   }
   else
   {
     _gaq.push(['_trackEvent', 'Normal link', 'used']);
-    chrome.tabs.create({ "url": 'http://speedrunslive.com/#!/' + streamerName });
   }
+    chrome.tabs.create({ "url": streamBaseLink + fullscreen });
  }
 
 // Google analytics tracking code

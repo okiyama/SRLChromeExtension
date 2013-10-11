@@ -1,6 +1,14 @@
 Changelog
 ==================
 
+1.4.1
+
+* Rolled back to using Twitch by default
+
+1.4.0
+
+* Changed links to use SRL instead of Twitch by default
+
 1.3.1
 
 * Bug fix for links. Made the replacement more robust. Might need further tweaking.

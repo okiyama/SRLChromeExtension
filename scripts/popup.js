@@ -105,14 +105,7 @@ function loadStreamerList(data)
  */
 function initializeDoc(data)
 {
-  var wrap = document.createElement('div');
-  wrap.setAttribute('id', 'wrap');
-
-  var main = document.createElement('div');
-  main.setAttribute('id', 'main');
-
-  var container = document.createElement('div');
-  container.setAttribute('class', 'container');
+  var container = document.getElementById("container");
 
   var fullscreen = document.createElement('label');
   fullscreen.setAttribute('id', 'fullscreen');
@@ -137,9 +130,6 @@ function initializeDoc(data)
   container.appendChild(fullscreen);
   container.appendChild(donate);
 
-  main.appendChild(container);
-  wrap.appendChild(main);
-  document.body.appendChild(wrap);
 
   renderDonate();
 }

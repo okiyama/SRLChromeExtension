@@ -1,10 +1,22 @@
 /**
- * Speed Runs Live Stream Viewer main Javascript file for the popup.
- * Loads the popup and populates it with streams.
+ * Speed Runs Live Stream Viewer main popup. Holds logic for loading all of the pages.
  * 
- * Licensing information can be found in LICENSE.txt.
- * If you want to use this or want more information, you can always just email me
- * at julianjocque (at) gmail.com
+ *
+ * Copyright (C) 2012-2013 Julian Jocque
+ * 
+ * This file is part of SpeedRunsLive Stream Viewer.
+ * 
+ * SpeedRunsLive Stream Viewer is free software: you can redistribute it and/or modify
+ * it under the terms of version 2 of the GNU General Public License as published by
+ * the Free Software Foundation.
+ * 
+ * SpeedRunsLive Stream Viewer is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with SpeedRunsLive Stream Viewer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 /**
@@ -53,8 +65,7 @@ function loadRunners(e)
  */
 function loadStreamerList(data)
 {
-  var streamerList = document.createElement('div');
-  streamerList.setAttribute('id', 'streamList');
+  var streamerList = document.getElementById('streamList');
 
   for (var i = 0; i < data.channels.length; i++)
   {
@@ -105,32 +116,19 @@ function loadStreamerList(data)
  */
 function initializeDoc(data)
 {
-  var container = document.getElementById("container");
-
-  var fullscreen = document.createElement('label');
-  fullscreen.setAttribute('id', 'fullscreen');
-  fullscreen.innerHTML = 'Fullscreen';
-  fullscreen.onclick = function() { storeFS(); }
-  
-  var fsButton = document.createElement('input')
-  fsButton.setAttribute('id', 'fsButton');
-  fsButton.setAttribute('type', 'checkbox');
-  
+  fsButton.onclick = function() { storeFS(); };
   chrome.storage.sync.get('fullscreen', function(data) 
   {
-	  fsButton.checked = data['fullscreen'];
+	  document.getElementById('fsButton').checked = data['fullscreen'];
   });
+
+  //TODO: Fix copy-pasting here
   
-  var donate = document.createElement('a');
-  donate.setAttribute('id', 'donation_server');
-  donate.setAttribute('href', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VGW56QDZNVHTA');
-  donate.setAttribute('title', 'Donations for SRL. Does not go to extension author.');
-
-  fullscreen.appendChild(fsButton);
-  container.appendChild(fullscreen);
-  container.appendChild(donate);
-
-
+  var currentPageID = '#streamList';
+  settingsButton.onclick = function() { currentPageID = swapPage(settingsButton, currentPageID); };
+  streamsButton.onclick = function() { currentPageID = swapPage(streamsButton, currentPageID);  };
+  aboutButton.onclick = function() { currentPageID = swapPage(aboutButton, currentPageID); };
+  
   renderDonate();
 }
 
@@ -152,6 +150,22 @@ function storeFS()
 	  chrome.storage.sync.set({'fullscreen': false});
     _gaq.push(['_trackEvent', 'Fullscreen Button', 'Deactivate']);
   }
+}
+
+/**
+ * Switches from the current page to the page targeted by button.
+ * Returns the page ID of the current page after swapping
+ *
+ * @private
+ */
+function swapPage(button, currentPageID)
+{
+  var newPageID = button.attributes['target'].nodeValue;
+  if(newPageID != currentPageID) {
+    $(currentPageID).hide();
+    $(newPageID).fadeIn(300);
+  }
+  return newPageID;
 }
 
 /**
@@ -185,36 +199,20 @@ function addDonationInfo(data)
   var monthNames = [ "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December" ]; //Well, that's annoying.
   var time = new Date();
-  var topLine = document.createElement('span');
+  var topLine = document.getElementById('donationTopLine');
   topLine.innerHTML = 'SRL server costs - donations for ' + monthNames[time.getMonth()] + ' ' + time.getFullYear();
 
-  var donation_holder = document.createElement('div');
-  donation_holder.setAttribute('id', 'donation_holder');
-  var donation_bar = document.createElement('span');
-  donation_bar.setAttribute('id', 'donation_bar');
+  var donation_bar = document.getElementById('donation_bar');
   donation_bar.setAttribute('style', 'width: ' + data.percent + '%;')
 
   donation_holder.appendChild(donation_bar);
 
   var amount = document.createElement('span');
   amount.setAttribute('id', 'amount');
-  var balance = document.createElement('span');
-  balance.setAttribute('class', 'gold');
-  balance.setAttribute('id', 'd-balance');
+  var balance = document.getElementById('d-balance');
   balance.innerHTML = '$' + data.balance;
-  var target = document.createElement('span');
-  target.setAttribute('class', 'gold');
-  target.setAttribute('id', 'd-target');
+  var target = document.getElementById('d-target');
   target.innerHTML = '$' + data.target;
-
-  amount.innerHTML = "raised ";
-  amount.appendChild(balance);
-  amount.innerHTML += " out of ";
-  amount.appendChild(target);
-
-  container.appendChild(topLine);
-  container.appendChild(donation_holder);
-  container.appendChild(amount);
 }
 
 /**

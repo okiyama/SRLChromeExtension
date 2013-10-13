@@ -10,15 +10,18 @@
 
 
     <!-- Top Bar -->
-    <label id="streamsButton" target="#streamList">Streams</label>
-    <label id="settingsButton" target="#settingsPage">Settings</label>
-    <label id="aboutButton" target="#aboutPage">About</label>
+    <label id="topBarButtons">
+        <label class="button" id="streamsButton" target="#streamList" isselected="true">Streams</label>
+        <label class="button" id="settingsButton" target="#settingsPage" isselected="false">Settings</label>
+        <!-- <label class="button" id="statsButton" target="#statsPage">Stats</label> -->
+        <label class="link" id="aboutLink" target="#aboutPage" isSelected="false">About</label>
+    </label>
     <a id="donation_server" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=VGW56QDZNVHTA" title="Donations for SRL. Does not go to extension author.">
     <span id="donationTopLine"></span>
     <div id="donation_holder">
-    <span id="donation_bar"></span>
+        <span id="donation_bar"></span>
     </div>
-    <span id="amount">raised <span class="gold" id="d-balance"></span> out of <span class="gold" id="d-target"></span></span>
+        <span id="amount">raised <span class="gold" id="d-balance"></span> out of <span class="gold" id="d-target"></span></span>
     </a>
 
     <!-- Main Content -->
@@ -26,13 +29,13 @@
 	    <div id="main">
 		    <div class="container" id="container">
                 <div id="streamList"> </div>
-		    	<div id="settingsPage" style="display:none;">
+		    	<div class="hiddenPage" id="settingsPage" style="display:none;">
                     <div class="notification">All settings are saved automatically.</div>
                     <label id="fullscreen">Fullscreen<input id="fsButton" type="checkbox"></label>
                 </div>
-                <div id="aboutPage" style="display:none;">
+                <div class="hiddenPage" id="aboutPage" style="display:none;">
                     <div id="aboutContent">
-                        This is the about page where I get to be a narcissist.
+                        What're you talking aboot? What're you talking aboot? What're you talking aboot? What're you talking aboot? What're you talking aboot? What're you talking aboot? What're you talking aboot? What're you talking aboot? What're you talking aboot? What're you talking aboot? What're you talking aboot? What're you talking aboot? What're you talking aboot? What're you talking aboot? What're you talking aboot? What're you talking aboot? What're you talking aboot? What're you talking aboot? 
                     </div>
                 </div>
     		    

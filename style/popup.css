@@ -16,7 +16,7 @@ body {
 }
 .container {
   width: 100%;
-  margin: 0 auto;
+  margin-left: 1.5%;
   overflow: visible;
 }
 #wrap {
@@ -41,12 +41,6 @@ p {
   display: block;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
   background-color: #424242;
-  background-image: url("/images/grunge_button.png"), -webkit-gradient(linear, left top, left bottom, from(#424242), to(#303030));
-  /* Saf4+, Chrome */
-
-  background-image: url("/images/grunge_button.png"), -webkit-linear-gradient(top, #424242, #303030);
-  /* Chrome 10+, Saf5.1+, iOS 5+ */
-
   background-image: url("/images/grunge_button.png"), linear-gradient(to bottom, #424242, #303030);
   border-width: 1px 0px 1px 1px;
   border-style: solid;
@@ -89,12 +83,6 @@ p {
 }
 .twitchstreamer:hover {
   background-color: #1448b3;
-  background-image: url("/images/grunge_button.png"), -webkit-gradient(linear, left top, left bottom, from(#1448b3), to(#103b93));
-  /* Saf4+, Chrome */
-
-  background-image: url("/images/grunge_button.png"), -webkit-linear-gradient(top, #1448b3, #103b93);
-  /* Chrome 10+, Saf5.1+, iOS 5+ */
-
   background-image: url("/images/grunge_button.png"), linear-gradient(to bottom, #1448b3, #103b93);
   border-width: 1px 0px 1px 1px;
   border-style: solid;
@@ -108,12 +96,6 @@ p {
 }
 .twitchstreamer:active {
   background-color: #0a245a;
-  background-image: url("/images/grunge_button.png"), -webkit-gradient(linear, left top, left bottom, from(#0a245a), to(#061739));
-  /* Saf4+, Chrome */
-
-  background-image: url("/images/grunge_button.png"), -webkit-linear-gradient(top, #0a245a, #061739);
-  /* Chrome 10+, Saf5.1+, iOS 5+ */
-
   background-image: url("/images/grunge_button.png"), linear-gradient(to bottom, #0a245a, #061739);
   box-shadow: 0 0 0 rgba(0, 0, 0, 0.6);
   border-width: 1px 0px 1px 1px;
@@ -132,8 +114,6 @@ p {
 }
 #streamList {
   width: 98%;
-  margin-left: 1.5%;
-  margin-top: 2%;
 }
 #fullscreen {
   display: inline-block;
@@ -176,6 +156,35 @@ p {
   border-style: solid;
   border-color: #f8e68c #bc9f0b #bc9f0b #f8e483;
   border-radius: 4px;
+}
+.button {
+  font-size: 150%;
+  font-weight: bold;
+}
+#topBarButtons {
+  display:inline-block;
+  padding-top: 13px;
+  margin-left:1.5%;
+  vertical-align: text-bottom;
+}
+[isSelected = true] {
+  background: #bec7d2;
+  color: #111111;
+  border-radius: 5px;
+  padding: 3px;
+}
+.hiddenPage {
+  display: block;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+  background-color: #424242;
+  background-image: url("/images/grunge_button.png"), linear-gradient(to bottom, #424242, #303030);
+  border-width: 1px 0px 1px 1px;
+  border-style: solid;
+  border-color: #4c4c4c #000000 #000000 #474747;
+  border-radius: 5px;
+  width: 98%;
+  padding: 0;
+  margin-top: 8px;
 }
 ::-webkit-scrollbar {
   width: 10px;

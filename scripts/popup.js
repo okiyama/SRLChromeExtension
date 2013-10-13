@@ -121,13 +121,11 @@ function initializeDoc(data)
   {
 	  document.getElementById('fsButton').checked = data['fullscreen'];
   });
-
-  //TODO: Fix copy-pasting here
   
-  var currentPageID = '#streamList';
-  settingsButton.onclick = function() { currentPageID = swapPage(settingsButton, currentPageID); };
-  streamsButton.onclick = function() { currentPageID = swapPage(streamsButton, currentPageID);  };
-  aboutButton.onclick = function() { currentPageID = swapPage(aboutButton, currentPageID); };
+  var currentPageButton = streamsButton;
+  settingsButton.onclick = function() { currentPageButton = swapPage(settingsButton, currentPageButton); };
+  streamsButton.onclick = function() { currentPageButton = swapPage(streamsButton, currentPageButton);  };
+  aboutLink.onclick = function() { currentPageButton = swapPage(aboutLink, currentPageButton); };
   
   renderDonate();
 }
@@ -153,19 +151,22 @@ function storeFS()
 }
 
 /**
- * Switches from the current page to the page targeted by button.
+ * Switches from the current page to the page targeted by nextPageButton.
  * Returns the page ID of the current page after swapping
  *
  * @private
  */
-function swapPage(button, currentPageID)
+function swapPage(nextPageButton, currentPageButton)
 {
-  var newPageID = button.attributes['target'].nodeValue;
-  if(newPageID != currentPageID) {
+  var newPageID = nextPageButton.attributes['target'].nodeValue;
+  var currentPageID = currentPageButton.attributes['target'].nodeValue;
+  if(nextPageButton != currentPageButton) {
+    $(currentPageButton).attr('isSelected', 'false');
+    $(nextPageButton).attr('isSelected', 'true');
     $(currentPageID).hide();
     $(newPageID).fadeIn(300);
   }
-  return newPageID;
+  return nextPageButton;
 }
 
 /**

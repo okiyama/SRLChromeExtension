@@ -15,7 +15,7 @@ body {
   overflow: visible;
 }
 .container {
-  width: 100%;
+  width: 97%;
   margin-left: 1.5%;
   overflow: visible;
 }
@@ -112,19 +112,6 @@ p {
   padding-right: 4px;
   border-radius: 4px;
 }
-#streamList {
-  width: 98%;
-}
-#fullscreen {
-  display: inline-block;
-  font-size: 125%;
-  margin-top: 2%;
-  margin-left: 2%;
-  padding-left: 1px;
-}
-#fsButton {
-  vertical-align: text-top;
-}
 #donation_server {
   font-size: 75%;
   float: right;
@@ -182,9 +169,28 @@ p {
   border-style: solid;
   border-color: #4c4c4c #000000 #000000 #474747;
   border-radius: 5px;
-  width: 98%;
-  padding: 0;
+  padding: 5px;
+  padding-bottom: 3%;
   margin-top: 8px;
+}
+.setting {
+  font-size: 125%;
+}
+#settingsPage ul {
+  list-style: none;
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 0px;
+  padding-top: 2%;
+}
+#settingsPage li {
+  padding-bottom: 5px;
+}
+.notification {
+  font-style: italic;
+  font-size:80%;
 }
 ::-webkit-scrollbar {
   width: 10px;

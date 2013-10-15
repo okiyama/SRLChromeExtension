@@ -51,8 +51,6 @@ function loadRunners(e)
   var streamerList = loadStreamerList(data);
 
   var container = document.getElementsByClassName('container');
-
-  container[0].appendChild(streamerList);
   $('a').click(openLink);
 }
 
@@ -76,6 +74,7 @@ function loadStreamerList(data)
       streamer.setAttribute('class', 'twitchstreamer');
       streamer.setAttribute('href', '#');
       streamer.setAttribute('streamLink', 'http://www.twitch.tv/' + String(channel.name));
+      streamer.setAttribute('streamName', String(channel.name));
       
       var name = document.createElement('span');
       name.setAttribute('class', 'name');
@@ -116,38 +115,89 @@ function loadStreamerList(data)
  */
 function initializeDoc(data)
 {
-  fsButton.onclick = function() { storeFS(); };
-  chrome.storage.sync.get('fullscreen', function(data) 
-  {
-	  document.getElementById('fsButton').checked = data['fullscreen'];
-  });
-  
-  var currentPageButton = streamsButton;
-  settingsButton.onclick = function() { currentPageButton = swapPage(settingsButton, currentPageButton); };
-  streamsButton.onclick = function() { currentPageButton = swapPage(streamsButton, currentPageButton);  };
-  aboutLink.onclick = function() { currentPageButton = swapPage(aboutLink, currentPageButton); };
+  loadButtons();
   
   renderDonate();
 }
 
 /**
- * Stores if the Fullscreen Button is checked or not to sync storage. 
+ * Loads the buttons for the extension. Sets them appropriately based on previously saved settings.
+ *
+ * @private
+ */
+function loadButtons()
+{
+  setButtonsOnClicks();
+  loadOpenLinks();
+}
+
+/**
+ * Sets the onclick behavior for all the buttons in the extension.
+ *
+ * @private
+ */
+function setButtonsOnClicks()
+{
+  setOpenLinkOnClicks();
+  setPageOnClicks();
+}
+
+/**
+ * Sets the onclick behavior for the buttons which determine how to oepn links in the settings.
+ *
+ * @private
+ */
+function setOpenLinkOnClicks()
+{
+  twitchButton.onclick = function() { storeOpenLink(twitchButton); };
+  twitchFSButton.onclick = function() { storeOpenLink(twitchFSButton); };
+  srlButton.onclick = function() { storeOpenLink(srlButton); };
+}
+
+/**
+ * Sets the onclick behavior for the buttons which switch between the pages.
+ *
+ * @private
+ */
+function setPageOnClicks()
+{
+  var currentPageButton = streamsButton;
+  settingsButton.onclick = function() { currentPageButton = swapPage(settingsButton, currentPageButton); };
+  streamsButton.onclick = function() { currentPageButton = swapPage(streamsButton, currentPageButton);  };
+  aboutLink.onclick = function() { currentPageButton = swapPage(aboutLink, currentPageButton); };
+}
+
+/**
+ * Stores that the given button should be used to open links.
  * 
  * @private
  */
-function storeFS()
+function storeOpenLink(button)
 {
-  var fullscreen;
-  if (document.getElementById('fsButton').checked)
+  var buttonID = button.id; //For some reason, can't use periods inside the sync set function
+  if (button.checked)
   {
-	  chrome.storage.sync.set({'fullscreen': true});
-    _gaq.push(['_trackEvent', 'Fullscreen Button', 'Activated']);
+	  chrome.storage.sync.set({'openLinksWith': button.id});
+    _gaq.push(['_trackEvent', buttonID, 'Activated']);
   }
   else
   {
-	  chrome.storage.sync.set({'fullscreen': false});
-    _gaq.push(['_trackEvent', 'Fullscreen Button', 'Deactivate']);
+	  chrome.storage.sync.set({'openLinksWith': button.id});
+    _gaq.push(['_trackEvent', buttonID, 'Deactivated']);
   }
+}
+
+/**
+ * Loads how to open links from storage.
+ *
+ * @private
+ */
+function loadOpenLinks()
+{
+  chrome.storage.sync.get('openLinksWith', function(data) 
+  {
+    document.getElementById(data['openLinksWith']).checked = true;
+  });
 }
 
 /**
@@ -205,8 +255,6 @@ function addDonationInfo(data)
 
   var donation_bar = document.getElementById('donation_bar');
   donation_bar.setAttribute('style', 'width: ' + data.percent + '%;')
-
-  donation_holder.appendChild(donation_bar);
 
   var amount = document.createElement('span');
   amount.setAttribute('id', 'amount');
@@ -295,18 +343,23 @@ function openLink(e)
  */
  function openTwitchLink(e)
  {
-  var fullscreen = '';
-  var streamBaseLink = e.currentTarget.attributes['streamLink'].nodeValue;
-  if (document.getElementById('fsButton').checked)
-  {
-    _gaq.push(['_trackEvent', 'Fullscreen Link', 'used']);
-    fullscreen = '/popout/';
+  var howToOpen = document.querySelector('.settingsButton:checked').attributes['id'].nodeValue;
+  var streamName = e.currentTarget.attributes['streamName'].nodeValue;
+
+  if (howToOpen == 'twitchFSButton') {
+    _gaq.push(['_trackEvent', 'Twitch fullscreen Link', 'used']);
+    chrome.tabs.create({ "url": 'http://www.twitch.tv/' + streamName + "/popout/" });
   }
-  else
-  {
-    _gaq.push(['_trackEvent', 'Normal link', 'used']);
+  else if (howToOpen == 'srlButton') {
+    _gaq.push(['_trackEvent', 'SRL Link', 'used']);
+    chrome.tabs.create({ "url": 'http://speedrunslive.com/#!/' + streamName });
   }
-    chrome.tabs.create({ "url": streamBaseLink + fullscreen });
+  else {
+    //We will default to Twitch for safety
+    _gaq.push(['_trackEvent', 'Twitch link', 'used']);
+    chrome.tabs.create({ "url": 'http://www.twitch.tv/' + streamName });
+  }
+    
  }
 
 // Google analytics tracking code

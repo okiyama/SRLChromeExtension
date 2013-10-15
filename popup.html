@@ -30,8 +30,13 @@
 		    <div class="container" id="container">
                 <div id="streamList"> </div>
 		    	<div class="hiddenPage" id="settingsPage" style="display:none;">
-                    <div class="notification">All settings are saved automatically.</div>
-                    <label id="fullscreen">Fullscreen<input id="fsButton" type="checkbox"></label>
+                    <div class="notification">All settings are saved automatically</div>
+                    Open links using:
+                    <ul>
+                        <li><input class="settingsButton" name="openLink" id="twitchButton" type="radio" checked=true>Twitch</li>
+                        <li><input class="settingsButton" name="openLink" id="twitchFSButton" type="radio">Twitch fullscreen</li>
+                        <li><input class="settingsButton" name="openLink" id="srlButton" type="radio">SpeedRunsLive</li>
+                    </ul>
                 </div>
                 <div class="hiddenPage" id="aboutPage" style="display:none;">
                     <div id="aboutContent">

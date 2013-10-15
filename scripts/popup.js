@@ -362,17 +362,6 @@ function openLink(e)
     
  }
 
-// Google analytics tracking code
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', analyticsID]);
-_gaq.push(['_trackPageview']);
-
-(function() {
-  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-  ga.src = 'https://ssl.google-analytics.com/ga.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();
-
 // Loads stream list as soon as the document's DOM is ready.
 document.addEventListener('DOMContentLoaded', function ()
 {

@@ -48,9 +48,6 @@ function loadRunners(e)
 
   initializeDoc(data);
 
-  var streamerList = loadStreamerList(data);
-
-  var container = document.getElementsByClassName('container');
   $('a').click(openLink);
 }
 
@@ -116,8 +113,8 @@ function loadStreamerList(data)
 function initializeDoc(data)
 {
   loadButtons();
-  
   renderDonate();
+  loadStreamerList(data);
 }
 
 /**
@@ -225,7 +222,7 @@ function swapPage(nextPageButton, currentPageButton)
  * @private
  */
 function renderDonate()
-{
+{  
   $.ajax(
   {
     dataType: 'json',
@@ -247,11 +244,9 @@ function addDonationInfo(data)
 {
   var container = document.getElementById('donation_server');
 
-  var monthNames = [ "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December" ]; //Well, that's annoying.
-  var time = new Date();
+  var currentMonthYear = getCurrentMonthYear();
   var topLine = document.getElementById('donationTopLine');
-  topLine.innerHTML = 'SRL server costs - donations for ' + monthNames[time.getMonth()] + ' ' + time.getFullYear();
+  topLine.innerHTML = 'SRL server costs - donations for ' + currentMonthYear;
 
   var donation_bar = document.getElementById('donation_bar');
   donation_bar.setAttribute('style', 'width: ' + data.percent + '%;')
@@ -262,6 +257,21 @@ function addDonationInfo(data)
   balance.innerHTML = '$' + data.balance;
   var target = document.getElementById('d-target');
   target.innerHTML = '$' + data.target;
+}
+
+/**
+ * Gets the current month in Month Year format.
+ * Ex: December 2013
+ *
+ * @private
+ */
+function getCurrentMonthYear()
+{
+  var monthNames = [ "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December" ];
+  var time = new Date();
+
+  return monthNames[time.getMonth()] + ' ' + time.getFullYear()
 }
 
 /**

@@ -188,6 +188,12 @@ p {
 #settingsPage li {
   padding-bottom: 5px;
 }
+#aboutPage a {
+  color: #FFFFFF;
+}
+#aboutPage a:hover {
+  color: #797979;
+}
 .notification {
   font-style: italic;
   font-size:80%;

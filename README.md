@@ -25,4 +25,4 @@ Country flags next to name
 Favorites button with desktop notifications, lots of work though  
 Settings page  
 About page  
-
+Only retrieve donation info if the month is not yet at 100% completion.  

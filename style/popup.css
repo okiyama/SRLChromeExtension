@@ -149,9 +149,9 @@ p {
   font-weight: bold;
 }
 #topBarButtons {
-  display:inline-block;
+  display: inline-block;
   padding-top: 13px;
-  margin-left:1.5%;
+  margin-left: 1.5%;
   vertical-align: text-bottom;
 }
 [isSelected = true] {
@@ -180,23 +180,23 @@ p {
   list-style: none;
   -webkit-margin-before: 0em;
   -webkit-margin-after: 0em;
-  -webkit-margin-start: 0px;
+  -webkit-margin-start: 5px;
   -webkit-margin-end: 0px;
   -webkit-padding-start: 0px;
-  padding-top: 2%;
-}
-#settingsPage li {
-  padding-bottom: 5px;
 }
 #aboutPage a {
-  color: #FFFFFF;
+  color: #ffffac;
 }
 #aboutPage a:hover {
-  color: #797979;
+  color: #FFFFFF;
+}
+#aboutPage p {
+  text-indent: 1.5em;
 }
 .notification {
   font-style: italic;
-  font-size:80%;
+  font-size: 80%;
+  padding-bottom: 1em;
 }
 ::-webkit-scrollbar {
   width: 10px;

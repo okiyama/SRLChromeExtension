@@ -1,6 +1,13 @@
 Changelog
 ==================
 
+1.5.0
+
+* Added settings page
+* Added about page with info on the extension
+* Added how to open links to settings page
+* Significant refactoring, moved a lot of JS to HTML and cleaned up JS a lot
+
 1.4.1
 
 * Rolled back to using Twitch by default

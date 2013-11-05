@@ -22,7 +22,5 @@ zip and load it.
 
 Statistics section including stuff like time spent watching speedruns  
 Country flags next to name  
-Favorites button with desktop notifications, lots of work though  
-Settings page  
-About page  
+Favorites button with desktop notifications, lots of work though   
 Only retrieve donation info if the month is not yet at 100% completion.  

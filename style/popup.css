@@ -204,6 +204,6 @@ p {
 ::-webkit-scrollbar-thumb:vertical {
   background-color: #979797;
   height: 30px;
-  -webkit-border-radius: 10px;
+  border-radius: 10px;
   margin-right: 5px;
 }

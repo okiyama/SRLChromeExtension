@@ -1,6 +1,10 @@
 Changelog
 ==================
 
+1.5.1
+
+* Fixed inconsistent loading
+
 1.5.0
 
 * Added settings page

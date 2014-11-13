@@ -1,6 +1,11 @@
 Changelog
 ==================
 
+1.5.2
+
+* Fixed so it matches changes to SRL API
+* Minor change to link-searching to fix the-elite.net links.
+
 1.5.1
 
 * Fixed inconsistent loading

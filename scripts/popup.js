@@ -28,7 +28,7 @@
 function requestStreamers()
 {
   var req = new XMLHttpRequest();
-  req.open('GET', apiUrl + '/test/team', true);
+  req.open('GET', apiUrl + '/frontend/streams', true);
   req.onload = loadRunners.bind(this);
   req.send(null);
 }
@@ -62,9 +62,27 @@ function loadStreamerList(data)
 {
   var streamerList = document.getElementById('streamList');
 
-  for (var i = 0; i < data.channels.length; i++)
+  //For now, just only do Twitch. We'll add Hitbox in a little bit.
+  var filteredChannels = data._source.channels.filter(
+    function (el) {
+      return el.api == "twitch";
+    });
+
+  //Sort by viewers
+  var sortedChannels = 
+    filteredChannels.sort(
+      function (a, b) {
+        if (a.current_viewers > b.current_viewers) {
+          return -1;
+        }
+        else {
+          return 1;
+        }
+      });
+
+  for (var i = 0; i < sortedChannels.length; i++)
   {
-    var channel = data.channels[i].channel;
+    var channel = sortedChannels[i];
     if (!badGame(channel.meta_game, channel.name))
     {
       var streamer = document.createElement('a');
@@ -75,7 +93,7 @@ function loadStreamerList(data)
       
       var name = document.createElement('span');
       name.setAttribute('class', 'name');
-      name.innerHTML = channel.display_name;
+      name.innerHTML = channel.player_name;
 
       var image = document.createElement('img');
       image.setAttribute('src', channel.image.size70);
@@ -320,7 +338,7 @@ return false;
  * @public
  */
 function addLinksToText(text) {
-    var exp = /(https?:\/\/)?(([A-Za-z0-9#]+[.])+[A-Za-z]{2,3}([\/][A-Za-z0-9#=\?\-]+)*([.][A-Za-z]{2,4})?)/ig;
+    var exp = /(https?:\/\/)?(([A-Za-z0-9#-]+[.])+[A-Za-z]{2,3}([\/][A-Za-z0-9#=\?\-]+)*([.][A-Za-z]{2,4})?)(\/?)/ig;
     return text.replace(exp,"<a href='http://$2'>$1$2</a>"); 
 }
 

@@ -93,7 +93,7 @@ function loadStreamerList(data)
       
       var name = document.createElement('span');
       name.setAttribute('class', 'name');
-      name.innerHTML = channel.player_name;
+      name.innerHTML = channel.user_name;
 
       var image = document.createElement('img');
       image.setAttribute('src', channel.image.size70);

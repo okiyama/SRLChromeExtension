@@ -1,6 +1,10 @@
 Changelog
 ==================
 
+1.5.3
+
+* player_name -> user_name, API changed again
+
 1.5.2
 
 * Fixed so it matches changes to SRL API

@@ -1,6 +1,10 @@
 Changelog
 ==================
 
+1.5.4
+
+* Added basic error checking, if SRL doesn't give good data we display an error message rather than a blank popup.
+
 1.5.3
 
 * player_name -> user_name, API changed again

@@ -28,9 +28,21 @@
 function requestStreamers()
 {
   var req = new XMLHttpRequest();
-  req.open('GET', apiUrl + '/frontend/streams', true);
+  req.open('GET', apiUrl + '/frontend/streams', false);
   req.onload = loadRunners.bind(this);
-  req.send(null);
+  try {
+    req.send(null);
+  }
+  catch (error) {
+    var errorMessage = document.createElement('div');
+    errorMessage.setAttribute('class', 'errorMessage');
+    errorMessage.innerHTML = "Error loading data from SpeedRunsLive. <br />" +
+      "Most likely, SpeedRunsLive.com is down. <br />" + 
+      "If SpeedRunsLive.com is up, please send me an email at JulianJocque+SRL@gmail.com <br /> <br />" +
+      "Thank you for you patience while things get sorted!";
+    var streamerList = document.getElementById('streamList');
+    streamList.appendChild(errorMessage);
+  }
 }
 
 /**
@@ -43,6 +55,7 @@ function requestStreamers()
  */
 function loadRunners(e)
 {
+
   var runners = e.target.responseText;
   var data = JSON.parse(runners);
 

@@ -96,40 +96,37 @@ function loadStreamerList(data)
   for (var i = 0; i < sortedChannels.length; i++)
   {
     var channel = sortedChannels[i];
-    if (!badGame(channel.meta_game, channel.name))
-    {
-      var streamer = document.createElement('a');
-      streamer.setAttribute('class', 'twitchstreamer');
-      streamer.setAttribute('href', '#');
-      streamer.setAttribute('streamLink', 'http://www.twitch.tv/' + String(channel.name));
-      streamer.setAttribute('streamName', String(channel.name));
-      
-      var name = document.createElement('span');
-      name.setAttribute('class', 'name');
-      name.innerHTML = channel.user_name;
+    var streamer = document.createElement('a');
+    streamer.setAttribute('class', 'twitchstreamer');
+    streamer.setAttribute('href', '#');
+    streamer.setAttribute('streamLink', 'http://www.twitch.tv/' + String(channel.name));
+    streamer.setAttribute('streamName', String(channel.name));
+    
+    var name = document.createElement('span');
+    name.setAttribute('class', 'name');
+    name.innerHTML = channel.user_name;
 
-      var image = document.createElement('img');
-      image.setAttribute('src', channel.image.size70);
-      image.setAttribute('class', 'ava');
+    var image = document.createElement('img');
+    image.setAttribute('src', channel.image.size70);
+    image.setAttribute('class', 'ava');
 
-      var title = document.createElement('span');
-      title.setAttribute('class', 'description');
-      title.innerHTML = addLinksToText('<p>' + channel.title + '</p>');
+    var title = document.createElement('span');
+    title.setAttribute('class', 'description');
+    title.innerHTML = addLinksToText('<p>' + channel.title + '</p>');
 
-      var viewers = document.createElement('span');
-      viewers.setAttribute('class', 'viewers');
-      viewers.innerHTML = channel.current_viewers + ' viewers' + '<br />';
+    var viewers = document.createElement('span');
+    viewers.setAttribute('class', 'viewers');
+    viewers.innerHTML = channel.current_viewers + ' viewers' + '<br />';
 
-      var streamerInfo = document.createElement('div');
-      streamerInfo.setAttribute('class', 'streamerinfo');
-      streamerInfo.appendChild(name);
-      streamerInfo.appendChild(viewers);
-      streamerInfo.appendChild(title);
+    var streamerInfo = document.createElement('div');
+    streamerInfo.setAttribute('class', 'streamerinfo');
+    streamerInfo.appendChild(name);
+    streamerInfo.appendChild(viewers);
+    streamerInfo.appendChild(title);
 
-      streamer.appendChild(image);
-      streamer.appendChild(streamerInfo);
-      streamerList.appendChild(streamer);
-    }
+    streamer.appendChild(image);
+    streamer.appendChild(streamerInfo);
+    streamerList.appendChild(streamer);
   };
 
   return streamerList;
@@ -303,45 +300,6 @@ function getCurrentMonthYear()
   var time = new Date();
 
   return monthNames[time.getMonth()] + ' ' + time.getFullYear()
-}
-
-/**
- * Blacklist of games.
- * Check this before displaying a runner
- * @param game The name of the game
- *
- * @private
- */
-function badGame (game) {
-  if (game == null) return false;
-  if (game.search(/Age of Empires/i) > -1) { return true; }
-  if (game.search(/Audiosurf/i) > -1) { return true; }
-  if (game.search(/beatmania/i) > -1) { return true; }
-  if (game.search(/Dance Dance Revolution/i) > -1) { return true; }
-  if (game.search(/DayZ/i) > -1) { return true; }
-  if (game.search(/Diablo/i) > -1) { return true; }
-  if (game.search(/Dota 2/i) > -1) { return true; }
-  if (game.search(/Guild Wars/i) > -1) { return true; }
-  if (game.search(/Guitar Hero/i) > -1) { return true; }
-  if (game.search(/Heroes of Newerth/i) > -1) { return true; }
-  if (game.search(/iDOLM@STER/i) > -1) { return true; }
-  if (game.search(/Idolmaster/i) > -1) { return true; }
-  if (game.search(/League of Legends/i) > -1) { return true; }
-  if (game.search(/Mario Party/i) > -1) { return true; }
-  if (game.search(/Minecraft/i) > -1) { return true; }
-  if (game.search(/Osu!/i) > -1) { return true; }
-  if (game.search(/Ragnarok Online/i) > -1) { return true; }
-  if (game.search(/Rock Band/i) > -1) { return true; }
-  if (game.search(/RuneScape/i) > -1) { return true; }
-  if (game.search(/Starcraft/i) > -1) { return true; }
-  if (game.search(/StepMania/i) > -1) { return true; }
-  if (game.search(/Super Smash Bros/i) > -1) { return true; }
-  if (game.search(/Team Fortress/i) > -1) { return true; }
-  if (game.search(/Terraria/i) > -1) { return true; }
-  if (game.search(/Total Annihilation/i) > -1) { return true; }
-  if (game.search(/Warcraft/i) > -1) { return true; }
-  if (game.search(/Worms/i) > -1) { return true; }
-return false;
 }
 
 /**

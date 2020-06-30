@@ -1,8 +1,7 @@
 SpeedRunsLive.com Chrome Extension
 ==================
 
-This is now available on the Google Chrome Store. [You can try it out here.]
-(https://chrome.google.com/webstore/detail/speedrunslive-stream-view/nphaihpdpkboplhbcdpmlaibainbnjio)
+This is now available on the Google Chrome Store. [You can try it out here.](https://chrome.google.com/webstore/detail/speedrunslive-stream-view/nphaihpdpkboplhbcdpmlaibainbnjio)
 
 **About**
 

@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "SpeedRunsLive Stream Viewer",
-  "description": "For easily viewing the streams on SpeedRunsLive.com",
   "version": "1.5.6",
+  "description": "For easily viewing the streams on SpeedRunsLive.com",
   "action": {
     "default_icon": {
       "19": "images/icon19.png",
@@ -26,8 +26,12 @@
   },
   "web_accessible_resources": [
     {
-      "resources": ["images/grunge_button.png"],
-      "matches": ["http://*.speedrunslive.com/*"]
+      "resources": [
+        "images/grunge_button.png"
+      ],
+      "matches": [
+        "http://*.speedrunslive.com/*"
+      ]
     }
   ]
 }

@@ -1,10 +1,8 @@
-<!doctype html>
-<html>
-<head>
-    <link type="text/css" rel="Stylesheet" href="style/popup.css" />
-    <script type="text/javascript" src="scripts/jquery.min.js"></script>
-    <script type="text/javascript" src="scripts/popup.js"></script>
-  <body>
+<!DOCTYPE html><html><head>
+    <link type="text/css" rel="Stylesheet" href="style/popup.css">
+    <script type="module" src="scripts/jquery.min.js"></script>
+    <script type="module" src="scripts/popup.js"></script>
+  </head><body>
     <title>SpeedRunsLive Stream Viewer Popup</title>
 
     <!-- Top Bar -->
@@ -12,7 +10,7 @@
         <label class="button" id="streamsButton" target="#streamList" isselected="true">Streams</label>
         <label class="button" id="settingsButton" target="#settingsPage" isselected="false">Settings</label>
         <!-- <label class="button" id="statsButton" target="#statsPage">Stats</label> -->
-        <label class="link" id="aboutLink" target="#aboutPage" isSelected="false">About</label>
+        <label class="link" id="aboutLink" target="#aboutPage" isselected="false">About</label>
     </label>
     <a id="donation_server" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=VGW56QDZNVHTA" title="Donations for SRL. Does not go to extension author.">
         <span id="donationTopLine"></span>
@@ -31,7 +29,7 @@
                     <div class="notification">All settings are saved automatically</div>
                     Open links using:
                     <ul>
-                        <li><input class="settingsButton" name="openLink" id="twitchButton" type="radio" checked=true>Twitch</li>
+                        <li><input class="settingsButton" name="openLink" id="twitchButton" type="radio" checked="true">Twitch</li>
                         <li><input class="settingsButton" name="openLink" id="twitchFSButton" type="radio">Twitch fullscreen</li>
                         <li><input class="settingsButton" name="openLink" id="srlButton" type="radio">SpeedRunsLive</li>
                     </ul>
@@ -41,7 +39,7 @@
                         <p>This extension was created by Julian "Okiyama" Jocque, once famous for <a href="http://www.youtube.com/watch?v=UzqLymaZ2ms">hopping fences with epona.</a> It is an unofficial extension and in no way affiliated with <a href="http://speedrunslive.com/">SpeedRunsLive.com</a>.</p>
 
                         <p>This software is free and open source. If you want to contribute to its development, you can do so at the <a href="https://github.com/okiyama/SRLChromeExtension">Github Repository.</a> </p>
-                        <p><b>Please</b> contact me with any feedback, suggestions or bugs reports at either <br /> <a href="mailto:JulianJocque+SRLExtension@gmail.com">JulianJocque+SRLExtension@gmail.com</a> or <a href="http://twitch.tv/okiyama">twitch.tv/okiyama</a></p><br />
+                        <p><b>Please</b> contact me with any feedback, suggestions or bugs reports at either <br> <a href="mailto:JulianJocque+SRLExtension@gmail.com">JulianJocque+SRLExtension@gmail.com</a> or <a href="http://twitch.tv/okiyama">twitch.tv/okiyama</a></p><br>
                     </div>
                 </div>
     		    
@@ -49,7 +47,8 @@
 	    </div>
     </div>
     
-  </body>
-</head>
-</html>
+  
 
+
+
+</body></html>

@@ -42,7 +42,7 @@ function requestStreamers()
       "Most likely, SpeedRunsLive.com is down. <br />" + 
       "If SpeedRunsLive.com is up, please send me an email at JulianJocque+SRL@gmail.com <br /> <br />" +
       "Thank you for you patience while things get sorted!";
-    var streamerList = document.getElementById('streamList');
+    document.getElementById('streamList');
     streamList.appendChild(errorMessage);
   }
 }
@@ -129,8 +129,7 @@ function loadStreamerList(data)
     streamer.appendChild(image);
     streamer.appendChild(streamerInfo);
     streamerList.appendChild(streamer);
-  };
-
+  }
   return streamerList;
 }
 
@@ -272,14 +271,14 @@ function renderDonate()
  */
 function addDonationInfo(data)
 {
-  var container = document.getElementById('donation_server');
+  document.getElementById('donation_server');
 
   var currentMonthYear = getCurrentMonthYear();
   var topLine = document.getElementById('donationTopLine');
   topLine.innerHTML = 'SRL server costs - donations for ' + currentMonthYear;
 
   var donation_bar = document.getElementById('donation_bar');
-  donation_bar.setAttribute('style', 'width: ' + data.percent + '%;')
+  donation_bar.setAttribute('style', 'width: ' + data.percent + '%;');
 
   var amount = document.createElement('span');
   amount.setAttribute('id', 'amount');

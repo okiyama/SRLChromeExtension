@@ -36,14 +36,25 @@ function requestStreamers()
     req.send(null);
   }
   catch (error) {
+    console.dir(error);
+    if (error.code === 19) {
+      const confirmNavigation = confirm(
+          'To continue using the extension, you need to navigate to the SpeedRunsLive API and accept the risk of using an insecure connection. ' +
+          'Do you want to proceed to http://api.speedrunslive.com/?\n\n' +
+          'You will choose the "Advanced" button then the small "Proceed to api.speedrunslive.com (unsafe)" link at the bottom of the warning page.'
+      );
+
+      if (confirmNavigation) {
+        chrome.tabs.create({url: 'http://api.speedrunslive.com/'});
+      }
+    }
     var errorMessage = document.createElement('div');
     errorMessage.setAttribute('class', 'errorMessage');
     errorMessage.innerHTML = "Error loading data from SpeedRunsLive. <br />" +
-      "Most likely, SpeedRunsLive.com is down. <br />" + 
-      "If SpeedRunsLive.com is up, please send me an email at JulianJocque+SRL@gmail.com <br /> <br />" +
-      "Thank you for you patience while things get sorted!";
-    document.getElementById('streamList');
-    streamList.appendChild(errorMessage);
+        "Most likely, SpeedRunsLive.com is down. <br />" +
+        "If SpeedRunsLive.com is up, please email me at JulianJocque+SRL@gmail.com <br /> <br />" +
+        "Thank you for you patience while things get sorted!";
+    document.getElementById('streamList').appendChild(errorMessage);
   }
 }
 
